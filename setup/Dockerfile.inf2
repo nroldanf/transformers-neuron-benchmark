@@ -1,0 +1,6 @@
+FROM 763104351884.dkr.ecr.us-west-2.amazonaws.com/pytorch-inference-neuronx:1.13.1-neuronx-py310-sdk2.14.1-ubuntu20.04
+
+COPY requirements_inf2.txt .
+RUN python3 -m pip install --upgrade -r requirements_inf2.txt
+
+WORKDIR /opt/app/inferentia
