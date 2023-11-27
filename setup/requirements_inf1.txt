@@ -3,4 +3,4 @@ boto3==1.29.7
 awscli==1.30.7
 torch==1.11.0
 torch-xla==1.0
-optimum[neuronx]
+optimum[neuron]
