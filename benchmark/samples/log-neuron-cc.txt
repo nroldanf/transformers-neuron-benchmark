@@ -1,13 +1,121 @@
-2023-11-28T00:32:10Z INFO 2143 140090463991616 [root]: /opt/conda/bin/neuronx-cc compile /home/model-server/tmp/tmpyyj_vb6y/model --framework XLA --target trn1 --output /home/model-server/tmp/tmpyyj_vb6y/graph.neff
-2023-11-28T00:32:10Z INFO 2147 140090463991616 [root]: TVM/Relay detected
-2023-11-28T00:32:10Z INFO 2147 140090463991616 [root]: Pipeline: Frontend HHChecker WalrusDriver BIRLinker Kelper
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [root]: Intermediate files stored in /opt/app/inferentia/benchmark/samples/neuronxcc-3jsrimpw, output in /opt/app/inferentia/benchmark/samples
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Job Pipeline len(in_states) 1
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Processing input #0
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Running pipeline Pipeline.0
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Starting job job.Frontend.0
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Job Frontend len(in_states) 1
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Processing input #0
-2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Start model loading
-2023-11-28T00:32:41Z INFO 2147 140090463991616 [job.Frontend.0]: IR signature: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 for model
-2023-11-28T00:32:41Z INFO 2147 140090463991616 [job.Frontend.0]: Executing: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/hlo2penguin --input /home/model-server/tmp/tmpyyj_vb6y/model --out-dir ./ --output penguin.py --layers-per-module=1 --coalesce-all-gathers=false --coalesce-reduce-scatters=false --coalesce-all-reduces=false --emit-tensor-level-dropout-ops --emit-tensor-level-rng-ops
+2023-11-28T05:00:49Z INFO 26256 139961429985088 [root]: /opt/conda/bin/neuronx-cc compile /home/model-server/tmp/tmpjb87nsgy/model --framework XLA --target trn1 --output /home/model-server/tmp/tmpjb87nsgy/graph.neff
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: TVM/Relay detected
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: Pipeline: Frontend HHChecker WalrusDriver BIRLinker Kelper
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: Intermediate files stored in /opt/app/inferentia/benchmark/samples/neuronxcc-atlbqvff, output in /opt/app/inferentia/benchmark/samples
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Job Pipeline len(in_states) 1
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Processing input #0
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Running pipeline Pipeline.0
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Starting job job.Frontend.0
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Job Frontend len(in_states) 1
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Processing input #0
+2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Start model loading
+2023-11-28T05:00:50Z INFO 26260 139961429985088 [job.Frontend.0]: IR signature: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 for model
+2023-11-28T05:00:50Z INFO 26260 139961429985088 [job.Frontend.0]: Executing: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/hlo2penguin --input /home/model-server/tmp/tmpjb87nsgy/model --out-dir ./ --output penguin.py --layers-per-module=1 --coalesce-all-gathers=false --coalesce-reduce-scatters=false --coalesce-all-reduces=false --emit-tensor-level-dropout-ops --emit-tensor-level-rng-ops
+2023-11-28T05:01:12Z INFO 26260 139961429985088 [job.Frontend.0]: INFO: Found memory bound graph
+
+Histogram before graph level optimizations:
+total HLO instructions: 4133
+             reshape       940  22.74% ################################################################
+            constant       750  18.15% ###################################################
+           broadcast       682  16.50% ##############################################
+             convert       299   7.23% ####################
+            multiply       277   6.70% ##################
+           transpose       265   6.41% ##################
+                 dot       192   4.65% #############
+                call       146   3.53% #########
+                 add       125   3.02% ########
+              reduce        97   2.35% ######
+              divide        75   1.81% #####
+             compare        51   1.23% ###
+              select        50   1.21% ###
+               rsqrt        49   1.19% ###
+               power        49   1.19% ###
+            subtract        26   0.63% #
+             maximum        24   0.58% #
+         exponential        24   0.58% #
+               slice         4   0.10% 
+           parameter         2   0.05% 
+              gather         2   0.05% 
+             minimum         1   0.02% 
+                 abs         1   0.02% 
+                 log         1   0.02% 
+               tuple         1   0.02% 
+
+
+Histogram before graph level optimizations:
+total HLO instructions: 4133
+             reshape       940  22.74% ################################################################
+            constant       750  18.15% ###################################################
+           broadcast       682  16.50% ##############################################
+             convert       299   7.23% ####################
+            multiply       277   6.70% ##################
+           transpose       265   6.41% ##################
+                 dot       192   4.65% #############
+                call       146   3.53% #########
+                 add       125   3.02% ########
+              reduce        97   2.35% ######
+              divide        75   1.81% #####
+             compare        51   1.23% ###
+              select        50   1.21% ###
+               rsqrt        49   1.19% ###
+               power        49   1.19% ###
+            subtract        26   0.63% #
+             maximum        24   0.58% #
+         exponential        24   0.58% #
+               slice         4   0.10% 
+           parameter         2   0.05% 
+              gather         2   0.05% 
+             minimum         1   0.02% 
+                 abs         1   0.02% 
+                 log         1   0.02% 
+               tuple         1   0.02% 
+
+INFO: IoStatistics: total inputs: 2
+INFO: IoStatistics: total outputs: 1
+INFO: IoStatistics: total passthrough tensors: 0
+INFO: IoStatistics: total outputs read from: 0
+INFO: IoStatistics: total redundant outputs: 0
+Replaced 0 dropout sequences with OffloadedDropout
+INFO: HloMacCount has found 19377684480
+INFO: Traffic has found 2416316734
+INFO: AIF 16.04
+
+Histogram after graph level optimizations:
+total HLO instructions: 2116
+             reshape       439  20.75% ################################################################
+           transpose       241  11.39% ###################################
+            constant       208   9.83% ##############################
+            multiply       199   9.40% #############################
+                 dot       192   9.07% ###########################
+           broadcast       158   7.47% #######################
+             convert       151   7.14% ######################
+         custom-call       146   6.90% #####################
+                 add       124   5.86% ##################
+              reduce        97   4.58% ##############
+               rsqrt        49   2.32% #######
+            subtract        26   1.23% ###
+             maximum        24   1.13% ###
+         exponential        24   1.13% ###
+              divide        24   1.13% ###
+                iota         2   0.09% 
+              gather         2   0.09% 
+           parameter         2   0.09% 
+             compare         2   0.09% 
+              select         2   0.09% 
+                 abs         1   0.05% 
+               tuple         1   0.05% 
+             minimum         1   0.05% 
+                 log         1   0.05% 
+
+HLO Ops used in computation: abs add broadcast compare constant convert custom-call divide dot exponential gather iota log maximum minimum multiply parameter reduce reshape rsqrt select subtract transpose tuple 
+Invoking RemoveOptimizationBarriers pass
+
+2023-11-28T05:01:12Z USER 26260 139961429985088 [job.Frontend.0]: Compilation is optimized for best performance and compilation time. For faster compilation time please use -O1
+2023-11-28T05:01:12Z INFO 26260 139961429985088 [job.Frontend.0]: Start tensorization
+2023-11-28T05:01:13Z WARNING 26260 139961429985088 [job.Frontend.0]: TVM not detected.
+2023-11-28T05:01:13Z INFO 26260 139961429985088 [job.Frontend.0]: Num parallel jobs: 1
+2023-11-28T05:01:13Z INFO 26260 139961429985088 [root/Tensorizer/All]: Enter time region
+2023-11-28T05:01:13Z INFO 26260 139961429985088 [Tensorizer]: Frontend found a single CU. Switching to flat flow.
+2023-11-28T05:01:13Z INFO 26260 139961429985088 [Tensorizer]: Building model from Penguin script "penguin.py"...
+2023-11-28T05:01:25Z INFO 26260 139961429985088 [Tensorizer]: Tensorizer options: --disable-bitcasted-transpose --dont-verify-after-all --fp32-cast=matmult-bf16 --mm-transpose-type=fp32 --disable-expensive-checks --disable-max-stride-tiling --enable-replication --max-local-tensor-tile-size-in-bytes=32768 --tensor-layout-p-order=0 --tensor-layout-b-order=1 --enable-advanced-delinearization --weight-coalescing-threshold=512 --enable-bir-converter=enable --sunda-batchnorm --enable-tritium-loopfusion --keep-remat-dma-transpose --enable-softmax-kernel
+2023-11-28T05:01:25Z INFO 26260 139961429985088 [Tensorizer]: Building model from Penguin script "penguin.py"...

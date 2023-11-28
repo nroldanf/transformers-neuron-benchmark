@@ -11,7 +11,12 @@ from transformers import (
     T5EncoderModel,
     EsmTokenizer,
     EsmModel,
+    BertTokenizer,
+    BertModel,
+    BitsAndBytesConfig
 )
+# from optimum.neuron import NeuronModelForFeatureExtraction, pipeline
+
 import torch
 
 DUMMY_INPUT = "MNSTLT"
@@ -20,9 +25,23 @@ DUMMY_INPUT = "MNSTLT"
 logger = logging.getLogger(__name__)
 
 models = {
+    "Rostlab/prot_bert": (BertTokenizer, BertModel),
     "Rostlab/prot_t5_xl_half_uniref50-enc": (T5Tokenizer, T5EncoderModel),
-    "Rostlab/prot_t5_xl_uniref50": (T5Tokenizer, T5Model)
+    "Rostlab/prot_t5_xl_uniref50": (T5Tokenizer, T5Model),
+    "facebook/esm2_t36_3B_UR50D": (EsmTokenizer, EsmModel),
+    "facebook/esm2_t33_650M_UR50D": (EsmTokenizer, EsmModel),
+    "facebook/esm2_t30_150M_UR50D": (EsmTokenizer, EsmModel),
 }
+
+model_id = "Rostlab/prot_t5_xl_half_uniref50-enc"
+precision = torch.bfloat16
+# quantization_config = BitsAndBytesConfig(
+#     load_in_4bit=True,
+#     load_in_8bit=False,
+#     bnb_4bit_compute_dtype=precision,
+#     bnb_4bit_quant_type="nf4",
+#     bnb_4bit_use_double_quant=True,
+# )
 
 def get_instance_type():
     # Create a Boto3 EC2 client
@@ -81,12 +100,12 @@ def main():
     instance_type = get_instance_type()
     batch_size = 1
     num_neuron_cores = 2
+    
     is_neuron = True
 
     # define sequence lengths to benchmark
-    sequence_lengths = [32]
+    sequence_lengths = [16]
     
-    model_id = "Rostlab/prot_t5_xl_half_uniref50-enc"
 
     for sequence_length in sequence_lengths:
         # load tokenizer and  model
@@ -94,13 +113,10 @@ def main():
         
         tokenizer = tokenizer_class.from_pretrained(model_id, legacy=False)
         model = model_class.from_pretrained(
-            model_id, torchscript=True
+            model_id, torchscript=True,
+            torch_dtype=precision,
+            # quantization_config=quantization_config,
         )
-        
-        # tokenizer = AutoTokenizer.from_pretrained(model_id)
-        # model = AutoModelForSequenceClassification.from_pretrained(
-        #     model_id, torchscript=True
-        # )
 
     # compile model if neuron
     if is_neuron:
