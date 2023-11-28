@@ -1,0 +1,13 @@
+2023-11-28T00:32:10Z INFO 2143 140090463991616 [root]: /opt/conda/bin/neuronx-cc compile /home/model-server/tmp/tmpyyj_vb6y/model --framework XLA --target trn1 --output /home/model-server/tmp/tmpyyj_vb6y/graph.neff
+2023-11-28T00:32:10Z INFO 2147 140090463991616 [root]: TVM/Relay detected
+2023-11-28T00:32:10Z INFO 2147 140090463991616 [root]: Pipeline: Frontend HHChecker WalrusDriver BIRLinker Kelper
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [root]: Intermediate files stored in /opt/app/inferentia/benchmark/samples/neuronxcc-3jsrimpw, output in /opt/app/inferentia/benchmark/samples
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Job Pipeline len(in_states) 1
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Processing input #0
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Running pipeline Pipeline.0
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [pipeline.Pipeline.0]: Starting job job.Frontend.0
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Job Frontend len(in_states) 1
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Processing input #0
+2023-11-28T00:32:11Z INFO 2147 140090463991616 [job.Frontend.0]: Start model loading
+2023-11-28T00:32:41Z INFO 2147 140090463991616 [job.Frontend.0]: IR signature: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 for model
+2023-11-28T00:32:41Z INFO 2147 140090463991616 [job.Frontend.0]: Executing: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/hlo2penguin --input /home/model-server/tmp/tmpyyj_vb6y/model --out-dir ./ --output penguin.py --layers-per-module=1 --coalesce-all-gathers=false --coalesce-reduce-scatters=false --coalesce-all-reduces=false --emit-tensor-level-dropout-ops --emit-tensor-level-rng-ops

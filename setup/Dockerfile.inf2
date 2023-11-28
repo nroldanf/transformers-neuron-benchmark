@@ -1,6 +1,7 @@
 FROM 763104351884.dkr.ecr.us-west-2.amazonaws.com/pytorch-inference-neuronx:1.13.1-neuronx-py310-sdk2.14.1-ubuntu20.04
+RUN python3 -m pip config set global.extra-index-url https://pip.repos.neuron.amazonaws.com
 
 COPY requirements_inf2.txt .
-RUN python3 -m pip install --extra-index-url=https://pip.repos.neuron.amazonaws.com --upgrade -r requirements_inf2.txt
+RUN python3 -m pip install --upgrade -r requirements_inf2.txt
 
 WORKDIR /opt/app/inferentia
