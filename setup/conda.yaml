@@ -1,0 +1,9 @@
+name: transformers-env
+channels:
+  - defaults
+dependencies:
+  - pip=22.3.1
+  - python=3.10.12
+  - pip:
+    - --extra-index-url=https://pypi.nvidia.com
+    - -r requirements_gpu.txt

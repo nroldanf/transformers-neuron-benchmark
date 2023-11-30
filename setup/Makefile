@@ -27,5 +27,5 @@ run-container-interactive-gpu:
 	docker run -it \
 		-p 80:8000 \
 		--gpus=all \
-		-v /home/ubuntu/workdir/transformers-neuron-benchmark/:/opt/app/inferentia \
+		-v /home/ubuntu/workdir/transformers-neuron-benchmark/:/opt/app \
 		${IMAGE_NAME} bash

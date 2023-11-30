@@ -1,7 +1,23 @@
-FROM nvcr.io/nvidia/pytorch:23.10-py3
-
-COPY requirements_inf2.txt .
-
-RUN python3 -m pip install --upgrade -r requirements_inf2.txt
-
-WORKDIR /opt/app/inferentia
+# note that the version (cuda:12.2.0) must match the cuda driver version on the host machine (CUDA Version: 12.0
+FROM nvidia/cuda:12.2.0-base-ubuntu22.04
+# Make sure python doesn't buffer stdout so we get logs ASAP.
+ENV PYTHONUNBUFFERED=TRUE
+# Set working directory
+WORKDIR /opt/app
+# Update system packages and install dependencies
+RUN apt-get update && \
+apt-get install -y wget curl bzip2 git graphviz && \
+rm -rf /var/lib/apt/lists/*
+# Set up micromamba
+# We need to install micromamba, because the nvidia base image does not include it.
+RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C /usr/local/bin --strip-components 1
+# Set PATH so micromamba is found
+ENV PATH="/usr/local/bin:${PATH}"
+# Copy the env.yml file into the Docker image
+COPY conda.yaml .
+COPY requirements_gpu.txt .
+# Use micromamba to install packages from the env.yml file into the base environment
+RUN micromamba install -y -n base -f conda.yaml && \
+micromamba clean --all --yes
+# set paths
+ENV PATH="/root/micromamba/bin:${PATH}"
