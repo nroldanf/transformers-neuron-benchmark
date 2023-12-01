@@ -5,7 +5,7 @@ from time import perf_counter
 import torch
 import requests
 import numpy as np
-from constants import WARM_UP_STEPS, INFERENCE_STEPS, DUMMY_INPUT
+from constants import *
 
 # TODO: Include batch size as a parameter. For now, batch is 1 and the sequence lenght changes
 
@@ -24,11 +24,12 @@ def generate_sample_inputs(tokenizer, max_sequence_length, batch_size=1, is_neur
 
 def measure_latency(model, tokenizer, sequence_length, batch_size, is_neuron=False):
     inputs = generate_sample_inputs(tokenizer, sequence_length, batch_size, is_neuron)
-    # if is_neuron:
-    #     import torch_neuronx
-    #     model = torch_neuronx.dynamic_batch(model)
+    # enable the dynamic batch size
+    # this only works for the non-zeroth dimension
+    if is_neuron:
+        import torch_neuronx
+        model = torch_neuronx.dynamic_batch(model)
     
-    print(inputs)
     latencies = []
     # warm up
     for _ in range(WARM_UP_STEPS):
@@ -62,13 +63,19 @@ def compile_model_inf1(model, tokenizer, max_sequence_length, batch_size, num_ne
     return torch.neuron.trace(model, example_inputs=inputs)
 
 
-def compile_model_inf2(model, tokenizer, max_sequence_length, batch_size, num_neuron_cores, is_neuron):
+def compile_model_inf2(model, tokenizer, max_sequence_length, batch_size, num_neuron_cores, compiler_args, compiler_workdir):
     # use only one neuron core
     os.environ["NEURON_RT_NUM_CORES"] = str(num_neuron_cores)
     import torch_neuronx
 
-    inputs = generate_sample_inputs(tokenizer, max_sequence_length, batch_size, is_neuron)
-    return torch_neuronx.trace(model, example_inputs=inputs)
+    inputs = generate_sample_inputs(tokenizer, max_sequence_length, batch_size, True)
+    trace = torch_neuronx.trace(
+        model,
+        compiler_workdir=compiler_workdir,
+        compiler_args=compiler_args,
+        example_inputs=inputs,
+    )
+    return trace
 
 
 def get_instance_type(region_name: str):

@@ -1,6 +1,7 @@
 import logging
 import argparse
 import torch
+import os
 import csv
 from utils import (
     measure_latency,
@@ -66,46 +67,75 @@ def main(args):
     model.requires_grad_(False) # freeze weights
     model.eval()
     
-    for sequence_length in sequence_lengths:
-        # compile model if neuron
-        if args.is_neuron:
-            
-            if USE_MAX_SEQUENCE_LENGTH:
-                max_sequence_length = max(SEQUENCE_LENGTHS)
-            else:
-                max_sequence_length = sequence_length
-            
-            if "inf1" in instance_type:
-                print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
-                compiled_model = compile_model_inf1(
-                    model, tokenizer, max_sequence_length, batch_size, args.num_neuron_cores, args.is_neuron
-                )
-            elif "inf2" in instance_type:
-                print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
-                compiled_model = compile_model_inf2(
-                    model, tokenizer, max_sequence_length, batch_size, args.num_neuron_cores, args.is_neuron
-                )
-            else:
-                raise ValueError("Unknown neuron version")
-        else:
-            model.to("cuda")
-
-        print(f"Measuring latency for sequence length {sequence_length}")
-        if args.is_neuron:
-            res = measure_latency(compiled_model, tokenizer, sequence_length, batch_size, args.is_neuron)
-        else:
-            res = measure_latency(model, tokenizer, sequence_length, batch_size, args.is_neuron)
-        benchmark_dict.append({**res, "instance_type": instance_type})
-    
-    
-    print("Saving results...")
-    # write results to csv
-    keys = benchmark_dict[0].keys()
     output_file_name = f'results/benchmmark_{instance_type}_{args.model_id.replace("-","_").replace("/", "_")}.csv'
-    with open(output_file_name, "w", newline="") as output_file:
-        dict_writer = csv.DictWriter(output_file, keys)
-        dict_writer.writeheader()
-        dict_writer.writerows(benchmark_dict)
+    with open(output_file_name, "w", newline="") as output_file:    
+        writer = csv.writer(output_file)
+        writer.writerow(BENCHMARK_PARAMS)
+
+        for sequence_length in sequence_lengths:
+            # compile model if neuron
+            if args.is_neuron:
+                
+                if USE_MAX_SEQUENCE_LENGTH:
+                    max_sequence_length = max(SEQUENCE_LENGTHS)
+                else:
+                    max_sequence_length = sequence_length
+                
+                # NEURONX-CC args
+                # https://awsdocs-neuron.readthedocs-hosted.com/en/latest/compiler/neuronx-cc/api-reference-guide/neuron-compiler-cli-reference-guide.html
+                compiler_workdir = f'/opt/app/inferentia/benchmark/compiled_models/{args.model_id.replace("-","_")}/batch={batch_size}_seq_len={max_sequence_length}'
+                neuron_compiler_args = [
+                    "--target=inf2",
+                    "--model-type=transformer",
+                    "--auto-cast=matmult",
+                    "--auto-cast-type=bf16",
+                    "--optlevel=2",
+                    #"--distribution-strategy=fsdp",
+                    f'--logfile={compiler_workdir}/log-neuron-cc.txt',
+                    #f'--output={NEURON_COMPILER_WORKDIR}/{args.model_id.replace("-","_").replace("/", "_")}_{sequence_length}.neff',
+                ]
+                
+                os.environ['NEURON_COMPILE_CACHE_URL'] = compiler_workdir
+                
+                if "inf1" in instance_type:
+                    print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
+                    compiled_model = compile_model_inf1(
+                        model, tokenizer, max_sequence_length, batch_size, args.num_neuron_cores, neuron_compiler_args
+                    )
+                elif "inf2" in instance_type:
+                    print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
+                    compiled_model = compile_model_inf2(
+                        model, 
+                        tokenizer, 
+                        max_sequence_length, 
+                        batch_size, 
+                        args.num_neuron_cores, 
+                        neuron_compiler_args,
+                        compiler_workdir,
+                    )
+                else:
+                    raise ValueError("Unknown neuron version")
+            else:
+                model.to("cuda")
+
+            print(f"Measuring latency for sequence length {sequence_length}")
+            if args.is_neuron:
+                res = measure_latency(compiled_model, tokenizer, sequence_length, batch_size, args.is_neuron)
+            else:
+                res = measure_latency(model, tokenizer, sequence_length, batch_size, args.is_neuron)
+            # benchmark_dict.append({**res, "instance_type": instance_type})
+        
+            writer.writerow(list(res.values()) + [instance_type])
+    
+    
+    # print("Saving results...")
+    # # write results to csv
+    # keys = benchmark_dict[0].keys()
+    # output_file_name = f'results/benchmmark_{instance_type}_{args.model_id.replace("-","_").replace("/", "_")}.csv'
+    # with open(output_file_name, "w", newline="") as output_file:
+    #     writer = csv.DictWriter(output_file, keys)
+    #     writer.writeheader()
+    #     writer.writerows(benchmark_dict)
     print(f"Results saved to {output_file_name}")
 
 
