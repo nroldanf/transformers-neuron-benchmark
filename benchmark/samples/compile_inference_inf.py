@@ -43,9 +43,9 @@ precision = torch.bfloat16
 #     bnb_4bit_use_double_quant=True,
 # )
 
-def get_instance_type():
+def get_instance_type(region_name="us-east-1"):
     # Create a Boto3 EC2 client
-    ec2_client = boto3.client("ec2", region_name="us-east-1")
+    ec2_client = boto3.client("ec2", region_name=region_name)
 
     # Get information about the current instance using the instance metadata service
     instance_id_url = "http://169.254.169.254/latest/meta-data/instance-id"
@@ -53,7 +53,7 @@ def get_instance_type():
     instance_id = instance_id_response.text
 
     # Describe the instance to get information, including the instance type
-    response = ec2_client.describe_instances(InstanceIds=[instance_id])
+    response = ec2_client.describe_instances(InstanceIds=[instance_id]) # 
 
     # Extract and return the instance type
     instance_type = response["Reservations"][0]["Instances"][0]["InstanceType"]
@@ -67,6 +67,7 @@ def generate_sample_inputs(tokenizer, sequence_length, batch_size=1):
         inputs_formatted, max_length=sequence_length, padding="max_length", return_tensors="pt"
     )
     return tuple(tokens.values())
+
 
 def format_protein_seqs(protein_seq: str) -> str:
     """
@@ -97,14 +98,14 @@ def compile_model_inf2(model, tokenizer, sequence_length, batch_size, num_neuron
     return torch_neuronx.trace(model, payload)
 
 def main():
-    instance_type = get_instance_type()
+    instance_type = get_instance_type("us-west-2")
     batch_size = 1
     num_neuron_cores = 2
     
     is_neuron = True
 
     # define sequence lengths to benchmark
-    sequence_lengths = [16]
+    sequence_lengths = [8]
     
 
     for sequence_length in sequence_lengths:
@@ -135,6 +136,7 @@ def main():
         model.to("cuda")
 
     inputs = generate_sample_inputs(tokenizer, sequence_length, batch_size)
+    print(inputs)
     with torch.no_grad():
         _ = model(*inputs)
 

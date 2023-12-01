@@ -29,7 +29,8 @@ def parse_args():
 
 
 def main(args):
-    logger.info(args)
+    print(args)
+    
     instance_type = get_instance_type(AWS_REGION)
     # TODO: Make the batch an array
     batch_size = 1
@@ -43,21 +44,23 @@ def main(args):
     # benchmark model
     benchmark_dict = []
 
-    logger.info(f"Running benchmark for model: {args.model_id}")
-    logger.info(f"Batch size: {batch_size}")
+    print(f"Running benchmark for model: {args.model_id}")
+    print(f"Batch size: {batch_size}")
 
     # load tokenizer and  model
     tokenizer_class, model_class = models.get(args.model_id)
-    tokenizer = tokenizer_class.from_pretrained(args.model_id, legacy=False)
+    tokenizer = tokenizer_class.from_pretrained(args.model_id, do_lower_case=False, legacy=False)
     if args.model_id == "Rostlab/prot_t5_xl_half_uniref50-enc":
         model = model_class.from_pretrained(
-            args.model_id, torchscript=True,
+            args.model_id, 
+            torchscript=True,
             torch_dtype=PRECISION,
             # quantization_config=quantization_config,
         )
     else:
         model = model_class.from_pretrained(
-            args.model_id, torchscript=True,
+            args.model_id, 
+            torchscript=True,
             # quantization_config=quantization_config,
         )
     model.requires_grad_(False) # freeze weights
@@ -66,25 +69,36 @@ def main(args):
     for sequence_length in sequence_lengths:
         # compile model if neuron
         if args.is_neuron:
+            
+            if USE_MAX_SEQUENCE_LENGTH:
+                max_sequence_length = max(SEQUENCE_LENGTHS)
+            else:
+                max_sequence_length = sequence_length
+            
             if "inf1" in instance_type:
-                model = compile_model_inf1(
-                    model, tokenizer, sequence_length, batch_size, args.num_neuron_cores
+                print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
+                compiled_model = compile_model_inf1(
+                    model, tokenizer, max_sequence_length, batch_size, args.num_neuron_cores, args.is_neuron
                 )
             elif "inf2" in instance_type:
-                model = compile_model_inf2(
-                    model, tokenizer, sequence_length, batch_size, args.num_neuron_cores
+                print(f"Compiling model for seq length {sequence_length} and batch size {batch_size}...")
+                compiled_model = compile_model_inf2(
+                    model, tokenizer, max_sequence_length, batch_size, args.num_neuron_cores, args.is_neuron
                 )
             else:
                 raise ValueError("Unknown neuron version")
         else:
             model.to("cuda")
 
-        logger.info(f"Measuring latency for sequence length {sequence_length}")
-        res = measure_latency(model, tokenizer, sequence_length, batch_size, args.is_neuron)
+        print(f"Measuring latency for sequence length {sequence_length}")
+        if args.is_neuron:
+            res = measure_latency(compiled_model, tokenizer, sequence_length, batch_size, args.is_neuron)
+        else:
+            res = measure_latency(model, tokenizer, sequence_length, batch_size, args.is_neuron)
         benchmark_dict.append({**res, "instance_type": instance_type})
     
     
-    logger.info("Saving results...")
+    print("Saving results...")
     # write results to csv
     keys = benchmark_dict[0].keys()
     output_file_name = f'results/benchmmark_{instance_type}_{args.model_id.replace("-","_").replace("/", "_")}.csv'
@@ -92,7 +106,7 @@ def main(args):
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(benchmark_dict)
-    logger.info(f"Results saved to {output_file_name}")
+    print(f"Results saved to {output_file_name}")
 
 
 if __name__ == "__main__":

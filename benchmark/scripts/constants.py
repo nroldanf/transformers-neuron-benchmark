@@ -9,7 +9,7 @@ from transformers import (
     EsmModel,
     BertTokenizer,
     BertModel,
-    BitsAndBytesConfig
+    # BitsAndBytesConfig
 )
 
 WARM_UP_STEPS = 10
@@ -23,6 +23,7 @@ PRECISION = torch.bfloat16
 # bert
 
 SEQUENCE_LENGTHS = [8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+USE_MAX_SEQUENCE_LENGTH = False
 
 models = {
     "Rostlab/prot_bert": (BertTokenizer, BertModel),
@@ -36,10 +37,10 @@ models = {
     "facebook/esm2_t6_8M_UR50D": (EsmTokenizer, EsmModel),
 }
 
-quantization_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    load_in_8bit=False,
-    bnb_4bit_compute_dtype=PRECISION,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True,
-)
+# quantization_config = BitsAndBytesConfig(
+#     load_in_4bit=True,
+#     load_in_8bit=False,
+#     bnb_4bit_compute_dtype=PRECISION,
+#     bnb_4bit_quant_type="nf4",
+#     bnb_4bit_use_double_quant=True,
+# )

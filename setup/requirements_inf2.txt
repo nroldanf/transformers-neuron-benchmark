@@ -3,4 +3,4 @@ boto3==1.29.7
 awscli==1.30.7
 optimum[neuronx]
 optimum==1.13.1
-optimum-neuron==0.11.0
+#optimum-neuron==0.11.0

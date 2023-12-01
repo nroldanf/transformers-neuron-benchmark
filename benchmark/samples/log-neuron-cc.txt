@@ -1,17 +1,17 @@
-2023-11-28T05:00:49Z INFO 26256 139961429985088 [root]: /opt/conda/bin/neuronx-cc compile /home/model-server/tmp/tmpjb87nsgy/model --framework XLA --target trn1 --output /home/model-server/tmp/tmpjb87nsgy/graph.neff
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: TVM/Relay detected
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: Pipeline: Frontend HHChecker WalrusDriver BIRLinker Kelper
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [root]: Intermediate files stored in /opt/app/inferentia/benchmark/samples/neuronxcc-atlbqvff, output in /opt/app/inferentia/benchmark/samples
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Job Pipeline len(in_states) 1
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Processing input #0
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Running pipeline Pipeline.0
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [pipeline.Pipeline.0]: Starting job job.Frontend.0
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Job Frontend len(in_states) 1
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Processing input #0
-2023-11-28T05:00:49Z INFO 26260 139961429985088 [job.Frontend.0]: Start model loading
-2023-11-28T05:00:50Z INFO 26260 139961429985088 [job.Frontend.0]: IR signature: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 for model
-2023-11-28T05:00:50Z INFO 26260 139961429985088 [job.Frontend.0]: Executing: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/hlo2penguin --input /home/model-server/tmp/tmpjb87nsgy/model --out-dir ./ --output penguin.py --layers-per-module=1 --coalesce-all-gathers=false --coalesce-reduce-scatters=false --coalesce-all-reduces=false --emit-tensor-level-dropout-ops --emit-tensor-level-rng-ops
-2023-11-28T05:01:12Z INFO 26260 139961429985088 [job.Frontend.0]: INFO: Found memory bound graph
+2023-12-01T15:06:09Z INFO 59977 140695329314624 [root]: /opt/conda/bin/neuronx-cc compile /home/model-server/tmp/tmp7ka_novp/model --framework XLA --target trn1 --output /home/model-server/tmp/tmp7ka_novp/graph.neff
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [root]: TVM/Relay detected
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [root]: Pipeline: Frontend HHChecker WalrusDriver BIRLinker Kelper
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [root]: Intermediate files stored in /opt/app/inferentia/benchmark/samples/neuronxcc-hroisih8, output in /opt/app/inferentia/benchmark/samples
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Job Pipeline len(in_states) 1
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Processing input #0
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Running pipeline Pipeline.0
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Starting job job.Frontend.0
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [job.Frontend.0]: Job Frontend len(in_states) 1
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [job.Frontend.0]: Processing input #0
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [job.Frontend.0]: Start model loading
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [job.Frontend.0]: IR signature: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 for model
+2023-12-01T15:06:09Z INFO 60009 140695329314624 [job.Frontend.0]: Executing: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/hlo2penguin --input /home/model-server/tmp/tmp7ka_novp/model --out-dir ./ --output penguin.py --layers-per-module=1 --coalesce-all-gathers=false --coalesce-reduce-scatters=false --coalesce-all-reduces=false --emit-tensor-level-dropout-ops --emit-tensor-level-rng-ops
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [job.Frontend.0]: INFO: Found memory bound graph
 
 Histogram before graph level optimizations:
 total HLO instructions: 4133
@@ -76,9 +76,9 @@ INFO: IoStatistics: total passthrough tensors: 0
 INFO: IoStatistics: total outputs read from: 0
 INFO: IoStatistics: total redundant outputs: 0
 Replaced 0 dropout sequences with OffloadedDropout
-INFO: HloMacCount has found 19377684480
-INFO: Traffic has found 2416316734
-INFO: AIF 16.04
+INFO: HloMacCount has found 9676259328
+INFO: Traffic has found 2416300222
+INFO: AIF 8.01
 
 Histogram after graph level optimizations:
 total HLO instructions: 2116
@@ -110,12 +110,1146 @@ total HLO instructions: 2116
 HLO Ops used in computation: abs add broadcast compare constant convert custom-call divide dot exponential gather iota log maximum minimum multiply parameter reduce reshape rsqrt select subtract transpose tuple 
 Invoking RemoveOptimizationBarriers pass
 
-2023-11-28T05:01:12Z USER 26260 139961429985088 [job.Frontend.0]: Compilation is optimized for best performance and compilation time. For faster compilation time please use -O1
-2023-11-28T05:01:12Z INFO 26260 139961429985088 [job.Frontend.0]: Start tensorization
-2023-11-28T05:01:13Z WARNING 26260 139961429985088 [job.Frontend.0]: TVM not detected.
-2023-11-28T05:01:13Z INFO 26260 139961429985088 [job.Frontend.0]: Num parallel jobs: 1
-2023-11-28T05:01:13Z INFO 26260 139961429985088 [root/Tensorizer/All]: Enter time region
-2023-11-28T05:01:13Z INFO 26260 139961429985088 [Tensorizer]: Frontend found a single CU. Switching to flat flow.
-2023-11-28T05:01:13Z INFO 26260 139961429985088 [Tensorizer]: Building model from Penguin script "penguin.py"...
-2023-11-28T05:01:25Z INFO 26260 139961429985088 [Tensorizer]: Tensorizer options: --disable-bitcasted-transpose --dont-verify-after-all --fp32-cast=matmult-bf16 --mm-transpose-type=fp32 --disable-expensive-checks --disable-max-stride-tiling --enable-replication --max-local-tensor-tile-size-in-bytes=32768 --tensor-layout-p-order=0 --tensor-layout-b-order=1 --enable-advanced-delinearization --weight-coalescing-threshold=512 --enable-bir-converter=enable --sunda-batchnorm --enable-tritium-loopfusion --keep-remat-dma-transpose --enable-softmax-kernel
-2023-11-28T05:01:25Z INFO 26260 139961429985088 [Tensorizer]: Building model from Penguin script "penguin.py"...
+2023-12-01T15:06:13Z USER 60009 140695329314624 [job.Frontend.0]: Compilation is optimized for best performance and compilation time. For faster compilation time please use -O1
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [job.Frontend.0]: Start tensorization
+2023-12-01T15:06:13Z WARNING 60009 140695329314624 [job.Frontend.0]: TVM not detected.
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [job.Frontend.0]: Num parallel jobs: 1
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [root/Tensorizer/All]: Enter time region
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [Tensorizer]: Frontend found a single CU. Switching to flat flow.
+2023-12-01T15:06:13Z INFO 60009 140695329314624 [Tensorizer]: Building model from Penguin script "penguin.py"...
+2023-12-01T15:06:15Z INFO 60009 140695329314624 [Tensorizer]: Tensorizer options: --disable-bitcasted-transpose --dont-verify-after-all --fp32-cast=matmult-bf16 --mm-transpose-type=fp32 --disable-expensive-checks --disable-max-stride-tiling --enable-replication --max-local-tensor-tile-size-in-bytes=32768 --tensor-layout-p-order=0 --tensor-layout-b-order=1 --enable-advanced-delinearization --weight-coalescing-threshold=512 --enable-bir-converter=enable --sunda-batchnorm --enable-tritium-loopfusion --keep-remat-dma-transpose --enable-softmax-kernel
+2023-12-01T15:06:15Z INFO 60009 140695329314624 [Tensorizer]: Building model from Penguin script "penguin.py"...
+2023-12-01T15:06:16Z INFO 60009 140695329314624 [Tensorizer]: Successfully built model.
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/DoNothing]: Running DoNothing
+2023-12-01T15:06:16Z INFO 60009 140695329314624 [DoNothing]: Finished (changed=True)
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/DoNothing]: DoNothing finished after 0.000 seconds
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeIR]: Running CanonicalizeIR
+2023-12-01T15:06:16Z INFO 60009 140695329314624 [CanonicalizeIR]: Finished (changed=False)
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeIR]: CanonicalizeIR finished after 0.040 seconds
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeCCOpLayout]: Running LegalizeCCOpLayout
+2023-12-01T15:06:16Z INFO 60009 140695329314624 [LegalizeCCOpLayout]: Finished (changed=False)
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeCCOpLayout]: LegalizeCCOpLayout finished after 0.049 seconds
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/ExpandBatchNorm]: Running ExpandBatchNorm
+2023-12-01T15:06:16Z INFO 60009 140695329314624 [ExpandBatchNorm]: Finished (changed=False)
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/ExpandBatchNorm]: ExpandBatchNorm finished after 0.051 seconds
+2023-12-01T15:06:16Z USER 60009 140695329314624 [sg0000/Tensorizer/ResolveComplicatePredicates]: Running ResolveComplicatePredicates
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [ResolveComplicatePredicates]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/ResolveComplicatePredicates]: ResolveComplicatePredicates finished after 0.041 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/AffinePredicateResolution]: Running AffinePredicateResolution
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [AffinePredicateResolution]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/AffinePredicateResolution]: AffinePredicateResolution finished after 0.048 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/EliminateDivs]: Running EliminateDivs
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [EliminateDivs]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/EliminateDivs]: EliminateDivs finished after 0.044 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/PerfectLoopNest]: Running PerfectLoopNest
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [PerfectLoopNest]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/PerfectLoopNest]: PerfectLoopNest finished after 0.046 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=True)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.336 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: Running GenericAccessSimplifier
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [GenericAccessSimplifier]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: GenericAccessSimplifier finished after 0.043 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/TCTransform]: Running TCTransform
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [TCTransform]: Finished (changed=True)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/TCTransform]: TCTransform finished after 0.072 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/CommuteConcat]: Running CommuteConcat
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [CommuteConcat]: Finished (changed=False)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/CommuteConcat]: CommuteConcat finished after 0.042 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorOpFusion]: Running TensorOpFusion
+2023-12-01T15:06:17Z INFO 60009 140695329314624 [TensorOpFusion]: Finished (changed=True)
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorOpFusion]: TensorOpFusion finished after 0.061 seconds
+2023-12-01T15:06:17Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorOpTransform]: Running TensorOpTransform
+2023-12-01T15:06:18Z INFO 60009 140695329314624 [TensorOpTransform]: Finished (changed=True)
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorOpTransform]: TensorOpTransform finished after 0.392 seconds
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerTensorOp]: Running LowerTensorOp
+2023-12-01T15:06:18Z INFO 60009 140695329314624 [LowerTensorOp]: Finished (changed=True)
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerTensorOp]: LowerTensorOp finished after 0.147 seconds
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeIR]: Running CanonicalizeIR
+2023-12-01T15:06:18Z INFO 60009 140695329314624 [CanonicalizeIR]: Finished (changed=False)
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeIR]: CanonicalizeIR finished after 0.088 seconds
+2023-12-01T15:06:18Z USER 60009 140695329314624 [sg0000/Tensorizer/MemcpyElimination]: Running MemcpyElimination
+2023-12-01T15:06:20Z INFO 60009 140695329314624 [MemcpyElimination]: Finished (changed=True)
+2023-12-01T15:06:20Z USER 60009 140695329314624 [sg0000/Tensorizer/MemcpyElimination]: MemcpyElimination finished after 2.278 seconds
+2023-12-01T15:06:20Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: Running LoopFusion
+2023-12-01T15:06:22Z INFO 60009 140695329314624 [LoopFusion]: Finished (changed=True)
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: LoopFusion finished after 1.703 seconds
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:22Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=False)
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.104 seconds
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Running Delinearization
+2023-12-01T15:06:22Z INFO 60009 140695329314624 [Delinearization]: Finished (changed=True)
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Delinearization finished after 0.071 seconds
+2023-12-01T15:06:22Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadStoreElimination]: Running DeadStoreElimination
+2023-12-01T15:06:24Z INFO 60009 140695329314624 [DeadStoreElimination]: Finished (changed=False)
+2023-12-01T15:06:24Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadStoreElimination]: DeadStoreElimination finished after 2.418 seconds
+2023-12-01T15:06:24Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.105 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [LICM]: Finished (changed=True)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.059 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Running Delinearization
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [Delinearization]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Delinearization finished after 0.037 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: Running LoopFusion
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [LoopFusion]: Finished (changed=True)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: LoopFusion finished after 0.315 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifySlice]: Running SimplifySlice
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [SimplifySlice]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifySlice]: SimplifySlice finished after 0.025 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [LICM]: Finished (changed=True)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.039 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.103 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/ValueNumbering]: Running ValueNumbering
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [ValueNumbering]: Finished (changed=True)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/ValueNumbering]: ValueNumbering finished after 0.063 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [LICM]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.038 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/PadElimination]: Running PadElimination
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [PadElimination]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/PadElimination]: PadElimination finished after 0.002 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Running Delinearization
+2023-12-01T15:06:25Z INFO 60009 140695329314624 [Delinearization]: Finished (changed=False)
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Delinearization finished after 0.036 seconds
+2023-12-01T15:06:25Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: Running LoopFusion
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [LoopFusion]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/LoopFusion]: LoopFusion finished after 0.223 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: Running GenericAccessSimplifier
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [GenericAccessSimplifier]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: GenericAccessSimplifier finished after 0.025 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.102 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [LICM]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.038 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/ValueNumbering]: Running ValueNumbering
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [ValueNumbering]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/ValueNumbering]: ValueNumbering finished after 0.051 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/TCTransform]: Running TCTransform
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [TCTransform]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/TCTransform]: TCTransform finished after 0.028 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/CommuteConcat]: Running CommuteConcat
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [CommuteConcat]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/CommuteConcat]: CommuteConcat finished after 0.025 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/RecognizeOpIdiom]: Running RecognizeOpIdiom
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [RecognizeOpIdiom]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/RecognizeOpIdiom]: RecognizeOpIdiom finished after 0.176 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/MaskPropagation]: Running MaskPropagation
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [MaskPropagation]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/MaskPropagation]: MaskPropagation finished after 0.055 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Recompute]: Running Recompute
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [Recompute]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Recompute]: Recompute finished after 0.003 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadCodeElimination]: Running DeadCodeElimination
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [DeadCodeElimination]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadCodeElimination]: DeadCodeElimination finished after 0.027 seconds
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [Tensorizer]: After optimization: 390 statements
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DoNothing]: Running DoNothing
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [DoNothing]: Finished (changed=True)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DoNothing]: DoNothing finished after 0.000 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/MutateDataType]: Running MutateDataType
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [MutateDataType]: Finished (changed=True)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/MutateDataType]: MutateDataType finished after 0.018 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/AutoCastTCInputs]: Running AutoCastTCInputs
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [AutoCastTCInputs]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/AutoCastTCInputs]: AutoCastTCInputs finished after 0.051 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: Running GenericAccessSimplifier
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [GenericAccessSimplifier]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/GenericAccessSimplifier]: GenericAccessSimplifier finished after 0.025 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Running Simplifier
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [Simplifier]: Finished (changed=False)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Simplifier]: Simplifier finished after 0.103 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: Running DelinearIndices
+2023-12-01T15:06:26Z INFO 60009 140695329314624 [DelinearIndices]: Finished (changed=True)
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: DelinearIndices finished after 0.091 seconds
+2023-12-01T15:06:26Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Running Delinearization
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [Delinearization]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/Delinearization]: Delinearization finished after 0.035 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: Running DelinearIndices
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [DelinearIndices]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: DelinearIndices finished after 0.086 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadCodeElimination]: Running DeadCodeElimination
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [DeadCodeElimination]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DeadCodeElimination]: DeadCodeElimination finished after 0.027 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/InferIntrinsicOnCC]: Running InferIntrinsicOnCC
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [InferIntrinsicOnCC]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/InferIntrinsicOnCC]: InferIntrinsicOnCC finished after 0.220 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/ResolveAccessConflict]: Running ResolveAccessConflict
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [ResolveAccessConflict]: Finished (changed=True)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/ResolveAccessConflict]: ResolveAccessConflict finished after 0.132 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [LICM]: Finished (changed=True)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.045 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/LocalLayoutOpt]: Running LocalLayoutOpt
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [LocalLayoutOpt]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/LocalLayoutOpt]: LocalLayoutOpt finished after 0.116 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: Running DelinearIndices
+2023-12-01T15:06:27Z INFO 60009 140695329314624 [DelinearIndices]: Finished (changed=False)
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/DelinearIndices]: DelinearIndices finished after 0.098 seconds
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/OrigLayoutTilingPipeline]: Running OrigLayoutTilingPipeline
+2023-12-01T15:06:27Z USER 60009 140695329314624 [sg0000/Tensorizer/GlobalLayoutOpt]: Running GlobalLayoutOpt
+2023-12-01T15:06:30Z INFO 60009 140695329314624 [GlobalLayoutOpt]: Finished (changed=True)
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/GlobalLayoutOpt]: GlobalLayoutOpt finished after 2.655 seconds
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeDAG]: Running CanonicalizeDAG
+2023-12-01T15:06:30Z INFO 60009 140695329314624 [CanonicalizeDAG]: Finished (changed=True)
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/CanonicalizeDAG]: CanonicalizeDAG finished after 0.090 seconds
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenAxesForTiling]: Running FlattenAxesForTiling
+2023-12-01T15:06:30Z INFO 60009 140695329314624 [FlattenAxesForTiling]: Finished (changed=True)
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenAxesForTiling]: FlattenAxesForTiling finished after 0.073 seconds
+2023-12-01T15:06:30Z USER 60009 140695329314624 [sg0000/Tensorizer/SundaSizeTiling]: Running SundaSizeTiling
+2023-12-01T15:06:32Z INFO 60009 140695329314624 [SundaSizeTiling]: Finished (changed=True)
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/SundaSizeTiling]: SundaSizeTiling finished after 1.965 seconds
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/OrigLayoutTilingPipeline]: OrigLayoutTilingPipeline finished after 4.802 seconds
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TilingProfiler]: Running TilingProfiler
+2023-12-01T15:06:32Z INFO 60009 140695329314624 [TilingProfiler]: Finished (changed=False)
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TilingProfiler]: TilingProfiler finished after 0.144 seconds
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: Running FlattenMacroLoop
+2023-12-01T15:06:32Z INFO 60009 140695329314624 [FlattenMacroLoop]: Finished (changed=True)
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: FlattenMacroLoop finished after 0.044 seconds
+2023-12-01T15:06:32Z USER 60009 140695329314624 [sg0000/Tensorizer/InferTongaTensor]: Running InferTongaTensor
+2023-12-01T15:06:33Z INFO 60009 140695329314624 [InferTongaTensor]: Finished (changed=True)
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/InferTongaTensor]: InferTongaTensor finished after 0.743 seconds
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: Running TongaSimplifier
+2023-12-01T15:06:33Z INFO 60009 140695329314624 [TongaSimplifier]: Finished (changed=False)
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: TongaSimplifier finished after 0.173 seconds
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:06:33Z INFO 60009 140695329314624 [LICM]: Finished (changed=True)
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.066 seconds
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/RewriteReplicationMatmul]: Running RewriteReplicationMatmul
+2023-12-01T15:06:33Z INFO 60009 140695329314624 [RewriteReplicationMatmul]: Finished (changed=False)
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/RewriteReplicationMatmul]: RewriteReplicationMatmul finished after 0.042 seconds
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: Running FlattenMacroLoop
+2023-12-01T15:06:33Z INFO 60009 140695329314624 [FlattenMacroLoop]: Finished (changed=True)
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: FlattenMacroLoop finished after 0.050 seconds
+2023-12-01T15:06:33Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyMacroPredicates]: Running SimplifyMacroPredicates
+2023-12-01T15:06:34Z INFO 60009 140695329314624 [SimplifyMacroPredicates]: Finished (changed=False)
+2023-12-01T15:06:34Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyMacroPredicates]: SimplifyMacroPredicates finished after 0.324 seconds
+2023-12-01T15:06:34Z USER 60009 140695329314624 [sg0000/Tensorizer/DataLocalityOpt]: Running DataLocalityOpt
+2023-12-01T15:07:09Z INFO 60009 140695329314624 [DataLocalityOpt]: Finished (changed=True)
+2023-12-01T15:07:09Z USER 60009 140695329314624 [sg0000/Tensorizer/DataLocalityOpt]: DataLocalityOpt finished after 35.301 seconds
+2023-12-01T15:07:09Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: Running TongaSimplifier
+2023-12-01T15:07:10Z INFO 60009 140695329314624 [TongaSimplifier]: Finished (changed=False)
+2023-12-01T15:07:10Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: TongaSimplifier finished after 0.206 seconds
+2023-12-01T15:07:10Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeSundaMacro]: Running LegalizeSundaMacro
+2023-12-01T15:07:10Z INFO 60009 140695329314624 [LegalizeSundaMacro]: Finished (changed=True)
+2023-12-01T15:07:10Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeSundaMacro]: LegalizeSundaMacro finished after 0.178 seconds
+2023-12-01T15:07:10Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: Running TongaSimplifier
+2023-12-01T15:07:11Z INFO 60009 140695329314624 [TongaSimplifier]: Finished (changed=False)
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: TongaSimplifier finished after 0.221 seconds
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/PerfectLoopNest]: Running PerfectLoopNest
+2023-12-01T15:07:11Z INFO 60009 140695329314624 [PerfectLoopNest]: Finished (changed=False)
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/PerfectLoopNest]: PerfectLoopNest finished after 0.054 seconds
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: Running FlattenMacroLoop
+2023-12-01T15:07:11Z INFO 60009 140695329314624 [FlattenMacroLoop]: Finished (changed=True)
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: FlattenMacroLoop finished after 0.112 seconds
+2023-12-01T15:07:11Z USER 60009 140695329314624 [sg0000/Tensorizer/RewriteWeights]: Running RewriteWeights
+2023-12-01T15:07:27Z INFO 60009 140695329314624 [RewriteWeights]: Finished (changed=True)
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/RewriteWeights]: RewriteWeights finished after 15.628 seconds
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/ReshapeWeights]: Running ReshapeWeights
+2023-12-01T15:07:27Z INFO 60009 140695329314624 [ReshapeWeights]: Finished (changed=True)
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/ReshapeWeights]: ReshapeWeights finished after 0.017 seconds
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: Running FlattenMacroLoop
+2023-12-01T15:07:27Z INFO 60009 140695329314624 [FlattenMacroLoop]: Finished (changed=False)
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/FlattenMacroLoop]: FlattenMacroLoop finished after 0.044 seconds
+2023-12-01T15:07:27Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyMacroPredicates]: Running SimplifyMacroPredicates
+2023-12-01T15:07:28Z INFO 60009 140695329314624 [SimplifyMacroPredicates]: Finished (changed=False)
+2023-12-01T15:07:28Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyMacroPredicates]: SimplifyMacroPredicates finished after 0.456 seconds
+2023-12-01T15:07:28Z USER 60009 140695329314624 [sg0000/Tensorizer/InferInitValue]: Running InferInitValue
+2023-12-01T15:07:30Z INFO 60009 140695329314624 [InferInitValue]: Finished (changed=True)
+2023-12-01T15:07:30Z USER 60009 140695329314624 [sg0000/Tensorizer/InferInitValue]: InferInitValue finished after 2.389 seconds
+2023-12-01T15:07:30Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: Running TongaSimplifier
+2023-12-01T15:07:30Z INFO 60009 140695329314624 [TongaSimplifier]: Finished (changed=False)
+2023-12-01T15:07:30Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifier]: TongaSimplifier finished after 0.216 seconds
+2023-12-01T15:07:30Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyTensor]: Running SimplifyTensor
+2023-12-01T15:07:30Z INFO 60009 140695329314624 [SimplifyTensor]: Finished (changed=True)
+2023-12-01T15:07:31Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyTensor]: SimplifyTensor finished after 0.217 seconds
+2023-12-01T15:07:31Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: Running LICM
+2023-12-01T15:07:31Z INFO 60009 140695329314624 [LICM]: Finished (changed=False)
+2023-12-01T15:07:31Z USER 60009 140695329314624 [sg0000/Tensorizer/LICM]: LICM finished after 0.079 seconds
+2023-12-01T15:07:31Z USER 60009 140695329314624 [sg0000/Tensorizer/SundaISel]: Running SundaISel
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [SundaISel]: Finished (changed=True)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/SundaISel]: SundaISel finished after 1.004 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopInterchange]: Running TongaLoopInterchange
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [TongaLoopInterchange]: Finished (changed=False)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopInterchange]: TongaLoopInterchange finished after 0.036 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: Running TongaSimplifyPredicates
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [TongaSimplifyPredicates]: Finished (changed=False)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: TongaSimplifyPredicates finished after 0.028 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopFusion]: Running TongaLoopFusion
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [TongaLoopFusion]: Finished (changed=True)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopFusion]: TongaLoopFusion finished after 0.536 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopInterchange]: Running TongaLoopInterchange
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [TongaLoopInterchange]: Finished (changed=False)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLoopInterchange]: TongaLoopInterchange finished after 0.028 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: Running TongaLICM
+2023-12-01T15:07:32Z INFO 60009 140695329314624 [TongaLICM]: Finished (changed=True)
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: TongaLICM finished after 0.098 seconds
+2023-12-01T15:07:32Z USER 60009 140695329314624 [sg0000/Tensorizer/FactorizeBlkDims]: Running FactorizeBlkDims
+2023-12-01T15:07:33Z INFO 60009 140695329314624 [FactorizeBlkDims]: Finished (changed=True)
+2023-12-01T15:07:33Z USER 60009 140695329314624 [sg0000/Tensorizer/FactorizeBlkDims]: FactorizeBlkDims finished after 0.433 seconds
+2023-12-01T15:07:33Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaInstComb]: Running TongaInstComb
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [TongaInstComb]: Finished (changed=True)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaInstComb]: TongaInstComb finished after 0.789 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaValueNumbering]: Running TongaValueNumbering
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [TongaValueNumbering]: Finished (changed=False)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaValueNumbering]: TongaValueNumbering finished after 0.085 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaInstComb]: Running TongaInstComb
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [TongaInstComb]: Finished (changed=False)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaInstComb]: TongaInstComb finished after 0.068 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/VectorizeDMA]: Running VectorizeDMA
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [VectorizeDMA]: Finished (changed=True)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/VectorizeDMA]: VectorizeDMA finished after 0.061 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: Running TongaSimplifyPredicates
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [TongaSimplifyPredicates]: Finished (changed=False)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: TongaSimplifyPredicates finished after 0.020 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizePartitionReduce]: Running LegalizePartitionReduce
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [LegalizePartitionReduce]: Finished (changed=True)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizePartitionReduce]: LegalizePartitionReduce finished after 0.102 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/DeConcat]: Running DeConcat
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [DeConcat]: Finished (changed=False)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/DeConcat]: DeConcat finished after 0.020 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/PartialSimdFusion]: Running PartialSimdFusion
+2023-12-01T15:07:34Z INFO 60009 140695329314624 [PartialSimdFusion]: Finished (changed=True)
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/PartialSimdFusion]: PartialSimdFusion finished after 0.229 seconds
+2023-12-01T15:07:34Z USER 60009 140695329314624 [sg0000/Tensorizer/TritiumFusion]: Running TritiumFusion
+2023-12-01T15:07:36Z INFO 60009 140695329314624 [TritiumFusion]: Finished (changed=True)
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/TritiumFusion]: TritiumFusion finished after 1.702 seconds
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/CCOpFusion]: Running CCOpFusion
+2023-12-01T15:07:36Z INFO 60009 140695329314624 [CCOpFusion]: Finished (changed=True)
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/CCOpFusion]: CCOpFusion finished after 0.399 seconds
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/VectorizeMatMult]: Running VectorizeMatMult
+2023-12-01T15:07:36Z INFO 60009 140695329314624 [VectorizeMatMult]: Finished (changed=False)
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/VectorizeMatMult]: VectorizeMatMult finished after 0.012 seconds
+2023-12-01T15:07:36Z USER 60009 140695329314624 [sg0000/Tensorizer/PartialLoopFusion]: Running PartialLoopFusion
+2023-12-01T15:07:37Z INFO 60009 140695329314624 [PartialLoopFusion]: Finished (changed=True)
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/PartialLoopFusion]: PartialLoopFusion finished after 0.425 seconds
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: Running TongaLICM
+2023-12-01T15:07:37Z INFO 60009 140695329314624 [TongaLICM]: Finished (changed=False)
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: TongaLICM finished after 0.072 seconds
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerTranspose]: Running LowerTranspose
+2023-12-01T15:07:37Z INFO 60009 140695329314624 [LowerTranspose]: Finished (changed=True)
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerTranspose]: LowerTranspose finished after 0.120 seconds
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/LateTongaInstComb]: Running LateTongaInstComb
+2023-12-01T15:07:37Z INFO 60009 140695329314624 [LateTongaInstComb]: Finished (changed=True)
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/LateTongaInstComb]: LateTongaInstComb finished after 0.477 seconds
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/SplitAccGrp]: Running SplitAccGrp
+2023-12-01T15:07:37Z INFO 60009 140695329314624 [SplitAccGrp]: Finished (changed=False)
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/SplitAccGrp]: SplitAccGrp finished after 0.023 seconds
+2023-12-01T15:07:37Z USER 60009 140695329314624 [sg0000/Tensorizer/SpillPSum]: Running SpillPSum
+2023-12-01T15:07:38Z INFO 60009 140695329314624 [SpillPSum]: Finished (changed=True)
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/SpillPSum]: SpillPSum finished after 0.366 seconds
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerIntrinsics]: Running LowerIntrinsics
+2023-12-01T15:07:38Z INFO 60009 140695329314624 [LowerIntrinsics]: Finished (changed=False)
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/LowerIntrinsics]: LowerIntrinsics finished after 0.025 seconds
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeType]: Running LegalizeType
+2023-12-01T15:07:38Z INFO 60009 140695329314624 [LegalizeType]: Finished (changed=True)
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeType]: LegalizeType finished after 0.048 seconds
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: Running TongaLICM
+2023-12-01T15:07:38Z INFO 60009 140695329314624 [TongaLICM]: Finished (changed=False)
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaLICM]: TongaLICM finished after 0.081 seconds
+2023-12-01T15:07:38Z USER 60009 140695329314624 [sg0000/Tensorizer/InferPSumTensor]: Running InferPSumTensor
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [InferPSumTensor]: Finished (changed=True)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/InferPSumTensor]: InferPSumTensor finished after 0.516 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/WeightCoalescing]: Running WeightCoalescing
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [WeightCoalescing]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/WeightCoalescing]: WeightCoalescing finished after 0.028 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeSundaAccess]: Running LegalizeSundaAccess
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [LegalizeSundaAccess]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/LegalizeSundaAccess]: LegalizeSundaAccess finished after 0.124 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/RelaxPredicates]: Running RelaxPredicates
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [RelaxPredicates]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/RelaxPredicates]: RelaxPredicates finished after 0.037 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorInitialization]: Running TensorInitialization
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [TensorInitialization]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/TensorInitialization]: TensorInitialization finished after 0.020 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: Running TongaSimplifyPredicates
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [TongaSimplifyPredicates]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/TongaSimplifyPredicates]: TongaSimplifyPredicates finished after 0.023 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/ExpandISAMacro]: Running ExpandISAMacro
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [ExpandISAMacro]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/ExpandISAMacro]: ExpandISAMacro finished after 0.046 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyTongaTensor]: Running SimplifyTongaTensor
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [SimplifyTongaTensor]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/SimplifyTongaTensor]: SimplifyTongaTensor finished after 0.103 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/DMALocalityOpt]: Running DMALocalityOpt
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [DMALocalityOpt]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/DMALocalityOpt]: DMALocalityOpt finished after 0.011 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/DataStreaming]: Running DataStreaming
+2023-12-01T15:07:39Z INFO 60009 140695329314624 [DataStreaming]: Finished (changed=False)
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/DataStreaming]: DataStreaming finished after 0.066 seconds
+2023-12-01T15:07:39Z USER 60009 140695329314624 [sg0000/Tensorizer/SFKVectorizer]: Running SFKVectorizer
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [SFKVectorizer]: Finished (changed=True)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/SFKVectorizer]: SFKVectorizer finished after 2.655 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/LateLegalizeInst]: Running LateLegalizeInst
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [LateLegalizeInst]: Finished (changed=True)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/LateLegalizeInst]: LateLegalizeInst finished after 0.109 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/CoalesceCCOp]: Running CoalesceCCOp
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [CoalesceCCOp]: Finished (changed=False)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/CoalesceCCOp]: CoalesceCCOp finished after 0.033 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/SimpleAllReduceTiling]: Running SimpleAllReduceTiling
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [SimpleAllReduceTiling]: Finished (changed=False)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/SimpleAllReduceTiling]: SimpleAllReduceTiling finished after 0.033 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/StaticProfiler]: Running StaticProfiler
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [StaticProfiler]: Finished (changed=False)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/StaticProfiler]: StaticProfiler finished after 0.082 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/SplitAPUnionSets]: Running SplitAPUnionSets
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [SplitAPUnionSets]: Finished (changed=True)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/SplitAPUnionSets]: SplitAPUnionSets finished after 0.084 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/DumpGraphAndMetadata]: Running DumpGraphAndMetadata
+2023-12-01T15:07:42Z INFO 60009 140695329314624 [DumpGraphAndMetadata]: Finished (changed=False)
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/DumpGraphAndMetadata]: DumpGraphAndMetadata finished after 0.061 seconds
+2023-12-01T15:07:42Z USER 60009 140695329314624 [sg0000/Tensorizer/BirCodeGenLoop]: Running BirCodeGenLoop
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [BirCodeGenLoop]: Finished (changed=False)
+2023-12-01T15:07:43Z USER 60009 140695329314624 [sg0000/Tensorizer/BirCodeGenLoop]: BirCodeGenLoop finished after 0.742 seconds
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [Tensorizer]: BirCodeGen estimate #instances=88969 in sg0000
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [Tensorizer]: IR signature: 836fc70d149e526edf7f8a9f65a4bef023382922eac777e4eabe6b096e1f9bab for sg0000/Tensorizer
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [Tensorizer]: Weights total number of bytes: 2416445440
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [root/Tensorizer/All]: Exit time region: delta=90.362s
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [job.Frontend.0]: End tensorization
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [job.Frontend.0]: Network input: input0
+2023-12-01T15:07:43Z INFO 60009 140695329314624 [job.Frontend.0]: Network input: input1
+2023-12-01T15:07:45Z INFO 60009 140695329314624 [job.Frontend.0]: wrote bir.json
+2023-12-01T15:07:45Z INFO 60009 140695329314624 [job.Frontend.0]: wrote tensor_map.json
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.Frontend.0]: Job #0 finished
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished job job.Frontend.0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Starting job job.HHChecker.0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.HHChecker.0]: Job HHChecker len(in_states) 1
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.HHChecker.0]: Processing input #0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.HHChecker.0]: Job #0 finished
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished job job.HHChecker.0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Starting job job.WalrusDriver.0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.WalrusDriver.0]: WalrusDriver has 1 states
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.WalrusDriver.0]: WalrusDriver: no partitions found. Switching to flat flow.
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.WalrusDriver.0]: Job WalrusDriver len(in_states) 1
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.WalrusDriver.0]: Processing input #0
+2023-12-01T15:07:46Z INFO 60009 140695329314624 [job.WalrusDriver.0]: WalrusDriver in_state.num_states 1
+2023-12-01T15:07:47Z INFO 60009 140695329314624 [job.WalrusDriver.0]: /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/walrus_driver --optlevel 2 --allocator coloring --verbose 60 --logfile-verbose 20 --logfile /opt/app/inferentia/benchmark/samples/log-neuron-cc.txt --sync-pool-dve -i bir.json --min_split_size 10240 --skip_split_vns  --no_split_dram --split_huge_dram_tensor 1.0 --preprocessing_only --max_penguin_distance 64 --pack_same_shape_only --instruction_fetch_latency 511 --max-partitions 1 --policy 3 --auxflag 0 --interleave none --schedule-delayed-latency 1 --max-load-lower-bound 0.14 --allreduce-buffer-size 500 --dram-page-size 512 --dram-rotation-size -1 --allreduce-rotation-dis 8 --relaxed-order=true --enable-anti-dependence-reduction=false --num-semaphores-per-queue 16 --numcores 1 --act-root-json /opt/conda/lib/python3.10/site-packages/neuronxcc/pwp/pwp_bin_trainium/act_info.json --dve-root-json /opt/conda/lib/python3.10/site-packages/neuronxcc/dve/dve_bin/dve_info.json --unified-walrus-and-stargazer --tensor-map tensor_map.json --enable-verifier=true --enable-birsim=false --enable-birsim-sync-only=false --enable-data-race-checker=true --enable-new-walrus-backend=true --inject-error=NONE
+2023-12-01T15:07:47Z INFO 60009 140695329314624 [job.WalrusDriver.0]: Executing /opt/conda/lib/python3.10/site-packages/neuronxcc/starfish/bin/walrus_driver --optlevel 2 --allocator coloring --verbose 60 --logfile-verbose 20 --logfile /opt/app/inferentia/benchmark/samples/log-neuron-cc.txt --sync-pool-dve -i bir.json --min_split_size 10240 --skip_split_vns  --no_split_dram --split_huge_dram_tensor 1.0 --preprocessing_only --max_penguin_distance 64 --pack_same_shape_only --instruction_fetch_latency 511 --max-partitions 1 --policy 3 --auxflag 0 --interleave none --schedule-delayed-latency 1 --max-load-lower-bound 0.14 --allreduce-buffer-size 500 --dram-page-size 512 --dram-rotation-size -1 --allreduce-rotation-dis 8 --relaxed-order=true --enable-anti-dependence-reduction=false --num-semaphores-per-queue 16 --numcores 1 --act-root-json /opt/conda/lib/python3.10/site-packages/neuronxcc/pwp/pwp_bin_trainium/act_info.json --dve-root-json /opt/conda/lib/python3.10/site-packages/neuronxcc/dve/dve_bin/dve_info.json --unified-walrus-and-stargazer --tensor-map tensor_map.json --enable-verifier=true --enable-birsim=false --enable-birsim-sync-only=false --enable-data-race-checker=true --enable-new-walrus-backend=true --inject-error=NONE
+2023-12-01T15:07:47Z INFO 60015 [WalrusDriver]: max_allowed_parallelism=32
+2023-12-01T15:07:47Z INFO 60015 [WalrusDriver]: walrus_driver runMode: 3 numModules: 1 subG: '' Cwd: "/opt/app/inferentia/benchmark/samples/neuronxcc-hroisih8/sg00"
+2023-12-01T15:07:47Z USER 60015 [WalrusDriver]: Running birverifier
+2023-12-01T15:07:47Z INFO 60015 [WalrusDriver]: Inputs to birverifier: modules=1 functions=1 allocs=1425 blocks=1 instructions=573 Max writers: 4 Max Readers: 75
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: birverifier finished after 0.290 seconds
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: curr_vmrss:  150mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 1425 memory location(s), 1 block(s), and 573 instruction(s). Max writers: 4 Max Readers: 75
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: Running expand_replication
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Inputs to expand_replication: modules=1 functions=1 allocs=1425 blocks=1 instructions=573 Max writers: 4 Max Readers: 75
+2023-12-01T15:07:48Z INFO 60015 [ExpandReplication]: Found 0 replicated matmults
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: expand_replication finished after 0.001 seconds
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: curr_vmrss:  150mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 1425 memory location(s), 1 block(s), and 573 instruction(s). Max writers: 4 Max Readers: 75
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: Running unroll
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Inputs to unroll: modules=1 functions=1 allocs=1425 blocks=1 instructions=573 Max writers: 4 Max Readers: 75
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: INFO (Unroll) Start unrolling at Fri Dec  1 15:07:48 2023
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: INFO (Unroll) adjusting parallelfor 
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: INFO (Unroll) DONE unrolling Fri Dec  1 15:07:48 2023
+
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: sg0000 Instruction count after Unroll: 
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Total count: 88969
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Matmult: 76536
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Load: 4660
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: TensorScalarPtr: 3555
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: TensorCopy: 2743
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: TensorTensor: 866
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Activation: 197
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: StreamShuffle: 192
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: TensorReduce: 97
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Memset: 53
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Reciprocal: 48
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: GenericIndirectLoad: 9
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Iota: 9
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Select: 2
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: Save: 1
+2023-12-01T15:07:48Z INFO 60015 [Unroll]: StreamTranspose: 1
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: unroll finished after 0.712 seconds
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: curr_vmrss:  524mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: Running error_injector
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Inputs to error_injector: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:48Z WARNING 60015 [ErrorInjector]: Unrecognized injected error value "0"
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: error_injector finished after 0.001 seconds
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: curr_vmrss:  413mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: Running constant_propagate
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: Inputs to constant_propagate: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:48Z INFO 60015 [ConstantPropagate]: [Constant_propagate for select] directly remove instruction number: 0
+2023-12-01T15:07:48Z INFO 60015 [ConstantPropagate]: [Constant_propagate for Affineselect] directly remove instruction number: 0
+2023-12-01T15:07:48Z USER 60015 [WalrusDriver]: constant_propagate finished after 0.099 seconds
+2023-12-01T15:07:48Z INFO 60015 [WalrusDriver]: curr_vmrss:  416mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: Running vn_splitter
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Inputs to vn_splitter: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z INFO 60015 [VNSplitter]: INFO (VNSplitter) Collected all the internal vnodes: size = 0
+2023-12-01T15:07:49Z INFO 60015 [VNSplitter]: INFO (VNSplitter) Done with analyze and splitting: total dead nodes = 0
+2023-12-01T15:07:49Z INFO 60015 [PerformanceProfiler]: number of penguin non-local-tensor caused reload left 0
+2023-12-01T15:07:49Z INFO 60015 [PerformanceProfiler]: number of penguin non-local-tensor caused spill left 0
+2023-12-01T15:07:49Z INFO 60015 [VNSplitterPass]: INFO (VNSplitter) Time: 0 seconds
+2023-12-01T15:07:49Z INFO 60015 [VNSplitterPass]: INFO (VerticalFusion) Time: 0.022 seconds
+2023-12-01T15:07:49Z INFO 60015 [VNSplitterPass]: INFO (ShrinkDN) Time: 0.019 seconds
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: vn_splitter finished after 0.057 seconds
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: curr_vmrss:  415mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: Running lower_ac
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Inputs to lower_ac: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z INFO 60015 [LowerAC]: INFO (LowerAC) Lowered 0 loads, 0 saves, 0 copies.
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: lower_ac finished after 0.006 seconds
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: curr_vmrss:  414mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: Running pre_sched
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Inputs to pre_sched: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Start PRE scheduling 2 cores:  1 at: Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: LayerSpill: Start...
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: LayerSpill: Found 0 Splits CCs
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: Grouped CCs to 0 clusters.
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: LayerSpill: To Spill 0 multi-layer tensors
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: LayerSpill: set uninit flag on 0 insts
+2023-12-01T15:07:49Z INFO 60015 [LayerSpiller]: LayerSpill: Done.
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Start split live ranges Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Num_Splits: 0
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: End split live ranges Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Strt remove redundncies Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove_redundant_memsets
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove_redundant_memsets: 0
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove_redundant_loads
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove_redundant_loads: 0
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: End remove redundncies Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Start DCE Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: End DCE Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Start build flow dependencies Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [build_flow_deps]: Start build fdeps. Invocation: 1Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [build_flow_deps]: Allocs: 18509 instructions: 88944
+2023-12-01T15:07:49Z INFO 60015 [build_flow_deps]: Build fdeps inserted 233951 edges 
+2023-12-01T15:07:49Z INFO 60015 [build_flow_deps]: Done build fdeps 233951 Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: End build flow dependencies Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: Start remove useless insts Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove_useless_insts
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: remove Useless Instructions: 0
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: End remove useless insts Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z INFO 60015 [PreSched]: DONE PRE scheduling Fri Dec  1 15:07:49 2023
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: pre_sched finished after 0.544 seconds
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: curr_vmrss:  490mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: Running mm_packing
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Inputs to mm_packing: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z INFO 60015 [MMPacking]: INFO (MMPack) Running the preprocessing step.
+2023-12-01T15:07:49Z INFO 60015 [MMPackingPass]: INFO (MMPacking) Time: 0.104 seconds
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: mm_packing finished after 0.116 seconds
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: curr_vmrss:  483mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z USER 60015 [WalrusDriver]: Running coloring_allocator_psum
+2023-12-01T15:07:49Z INFO 60015 [WalrusDriver]: Inputs to coloring_allocator_psum: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes saved 16384
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]: Allocating functions
+2023-12-01T15:07:49Z INFO 60015 [ColoringAllocator::Rep]:   linearize and check
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:   allocating PSUM
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:     main loop
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:     renumber locations
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:         size = 6390
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]: build_no_bitmap start
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]: 100% PSUM demand before spilling
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:           PSUM high-water mark = 8 tensors
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:         found 17860 edges
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:         mean: 5.58998
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:         median: 6.99269
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:         adjacency vectors require 142880 bytes
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]: build_no_bitmap done
+2023-12-01T15:07:49Z INFO 60015 [PSUM_Allocator]:       find costs
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:       best-of-n loop, heuristic = 0
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:         simplify interference graph
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:           initialize low and high
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:             lo = 6390
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:             hi = 0
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:             inf = 0
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:             total = 6390
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:           simplify
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:             new candidates = 0
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:         select ranges
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:           no more spills
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]:         PSUM score = 0 (lower is better)
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]: spilling from PSUM cost about 0 cycles
+2023-12-01T15:07:50Z INFO 60015 [PSUM_Allocator]: 100% PSUM utilization after allocation
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes saved 16384
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:50Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:50Z USER 60015 [WalrusDriver]: coloring_allocator_psum finished after 0.889 seconds
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: curr_vmrss:  462mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:50Z USER 60015 [WalrusDriver]: Running dma_optimization_psum
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: Inputs to dma_optimization_psum: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:50Z INFO 60015 [DMAOptimizationBase]: [psum spill optimization]: removed 0 spill/reload instructions
+2023-12-01T15:07:50Z INFO 60015 [DMAOptimizationBase]: [psum spill optimization]: removed 0 spill/reload memory locations
+2023-12-01T15:07:50Z USER 60015 [WalrusDriver]: dma_optimization_psum finished after 0.089 seconds
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: curr_vmrss:  439mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:50Z USER 60015 [WalrusDriver]: Running address_rotation_psum
+2023-12-01T15:07:50Z INFO 60015 [WalrusDriver]: Inputs to address_rotation_psum: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:50Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 1134 PSUM Banks
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 90 PSUM Banks
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 1237 PSUM Banks
+2023-12-01T15:07:51Z USER 60015 [WalrusDriver]: address_rotation_psum finished after 0.381 seconds
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: curr_vmrss:  460mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:51Z USER 60015 [WalrusDriver]: Running coloring_allocator_sb
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: Inputs to coloring_allocator_sb: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes saved 16384
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: Allocating functions
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]:   linearize and check
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:   allocating SB
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:     main loop
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       renumber locations
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         size = 11920
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       find partners
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         found 6388 accumulation groups
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           largest = -t13970_i6
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             tensors = 136
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             requires 34816 bytes/partition
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       expanding partners
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       find first defs
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       find loads
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         0 pin count
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         2 remat count
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       build interference graph
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         pass 1 int-tree
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            Num intervals 11920 Num locations 11920
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            IntervalTree Build Done
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            info.neighbors init Done
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            info.neighbors partners Done
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            IntervalTree readback Done
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         edge: 731060
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         mean: 122.661
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         median: 155.483
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       find costs
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:       best-of-n loop, heuristic = 0
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         simplify interference graph
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           initialize safe & unsafe
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               safe = 5250
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             unsafe = 6550
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                inf = 120
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:              total = 11920
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           simplify
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             simplify_step3 #unsafe 6270
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             new candidates = 4155
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         select ranges
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           Total: 11920
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             Spilled: 0.000 (0)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:             Allocated: 1.000 (11920)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Rover zone: 0.834 (9936)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Pre-rover zone: 0.012 (141)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Post-rover zone: 0.155 (1843)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Slice zone: 0.000 (0)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Blocks nothing: 0.007 (89)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Blocks medium: 0.000 (5)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until medium blocking (mean): 0.401
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until medium blocking (median): 0.591
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until medium blocking (p95): 0.591
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:               Blocks tall: 0.992 (11826)
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until tall blocking (mean): 0.971
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until tall blocking (median): 1.000
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                 Visited until tall blocking (p95): 1.000
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           Success
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:           SB spills = 0 tensors
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                size = 0 bytes/partition
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:              remats = 0 tensors
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:            unpinned = 0 tensors
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:                size = 0 bytes/partition
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]:         SB score = 0
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]: spilling from SB cost about 0 cycles
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]: 0 bytes/partition (0%) successfully pinned
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]: pinning saved approximately 0 cycles
+2023-12-01T15:07:51Z INFO 60015 [SB_Allocator]: 0% SB utilization after allocation
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes saved 16384
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:51Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:51Z USER 60015 [WalrusDriver]: coloring_allocator_sb finished after 0.660 seconds
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: curr_vmrss:  510mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:51Z USER 60015 [WalrusDriver]: Running dma_optimization_sb
+2023-12-01T15:07:51Z INFO 60015 [WalrusDriver]: Inputs to dma_optimization_sb: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: DMA optimization In bytes loaded or saved 2416164928, 99.9993% input load, 0.000678099% output write, 0% spill/reload 
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: removed 0 identical load 
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [Load Merging]: removed/shrinked 0 GCA remat/cloned instructions
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [Load Merging] reduced input/const loading DMA traffic 0, 0% out of total dma traffic(2.41615e+09)
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [DMA optimization]Reload_just_for_save Optimization removed 0 memlocs
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [spill optimization round 0]: removed 0 spill/reload instructions
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [spill optimization round 0]: removed 0 spill/reload memory locations
+2023-12-01T15:07:51Z INFO 60015 [DMAOptimizationBase]: [Spill Optimization] reduced DMA traffic 0, -nan% out of total spill/reload dma traffic
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [Allocation optimization]: removed 0 spill/reload instructions
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [Allocation optimization]: removed 0 spill/reload memory locations
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [Re-allocation Optimization] reduced DMA traffic 0, -nan% out of total spill/reload dma traffic
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [DMA optimization]Reload_just_for_save Optimization removed 0 memlocs
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [spill optimization round 0]: removed 0 spill/reload instructions
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [spill optimization round 0]: removed 0 spill/reload memory locations
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [Spill Optimization] reduced DMA traffic 0, -nan% out of total spill/reload dma traffic
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [remove extra save] removed 0 memlocs and 0 instructions
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [remove_memset_spill]: removed 0 spill/reload instructions
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [remove_memset_spill]: removed 0 spill/reload memory locations
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: DMA SpillSave Coalescing Round 0 combined 0 SpillSaves and Reloads
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]:  average loaded DMA size 4054 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]:  average saved DMA size 2048 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA coalescing DRAM bytes loaded 2416148544
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA coalescing average loaded DMA size 4054 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA coalescing DRAM bytes saved 16384
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA coalescing average saved DMA size 2048 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [DMA optimization]Reload_just_for_save Optimization removed 0 memlocs
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [Experiment partial DMA access] reduced DMA traffic 0, -nan% out of total spill/reload dma traffic
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: [DMA optimization] reduced DMA traffic 0, 0% out of total dma traffic
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: DMA optimization Out bytes loaded or saved 2416164928, 99.9993% input load, 0.000678099% output write, 0% spill/reload 
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization DRAM bytes loaded 2416148544
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization average loaded DMA size 4054 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization DRAM bytes saved 16384
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization average saved DMA size 2048 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization DRAM bytes DMAcopyed 0
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization average DMAcopyed DMA size 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Post DMA optimization average DMA size 4053 bytes
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: INFO: Finished set_spill_canreadUninit(module);
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: DMA optimization re-enable optimization
+2023-12-01T15:07:52Z USER 60015 [WalrusDriver]: dma_optimization_sb finished after 0.457 seconds
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: curr_vmrss:  447mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:52Z USER 60015 [WalrusDriver]: Running address_rotation_sb
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: Inputs to address_rotation_sb: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 598 Sb address
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 23 Sb address
+2023-12-01T15:07:52Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:52Z USER 60015 [WalrusDriver]: address_rotation_sb finished after 0.555 seconds
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: curr_vmrss:  452mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:52Z USER 60015 [WalrusDriver]: Running coloring_allocator_dram
+2023-12-01T15:07:52Z INFO 60015 [WalrusDriver]: Inputs to coloring_allocator_dram: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA DRAM bytes saved 16384
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Pre GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: Allocating functions
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]:   linearize and check
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:   allocating spills in DRAM pre_link mode
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:     reserved space = 2416429184 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:     spill space = 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:     aligned spill space = 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:     dram space = 107374182400 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:     renumber locations
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         size = 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:       find first defs
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:       build interference graph
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         bit-matrix size = 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         pass 1
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:           DRAM high-water mark = 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         pass 2
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         found 0 edges
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         mean: -nan
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         median: 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         adjacency vectors require 0 bytes
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         simplify interference graph
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:           initialize low and high
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:             lo = 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:             hi = 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:             total = 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:           simplify
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:             new candidates = 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]:         select ranges
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]: CC buffer size limit 524288000
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]: allreduce_dram_hwm 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]: Real CC buffer size 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]: DRAM hwm after allocation: 0
+2023-12-01T15:07:52Z INFO 60015 [DRAM_Allocator]: DRAM allocation successful
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes loaded 2416148544
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average loaded DMA size 4054 bytes
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes saved 16384
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average saved DMA size 2048 bytes
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA DRAM bytes DMACopyed 0
+2023-12-01T15:07:52Z INFO 60015 [ColoringAllocator::Rep]: INFO: Post GCA average DMACopyed DMA size 0 bytes
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: coloring_allocator_dram finished after 0.164 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  455mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running address_rotation_dram
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to address_rotation_dram: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: Runtime page size at 512MB
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: DRAM hwm before rotation 0
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: allreduce buffer size 524288000
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: allreduce hwm 0
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: Real CC buffer size 0
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: DRAM hwm after rotation 0
+2023-12-01T15:07:53Z INFO 60015 [DMAOptimizationBase]: DRAM Rotation rotated 0 Dram address
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: address_rotation_dram finished after 0.069 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  453mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running tensorcopy_accel
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to tensorcopy_accel: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [TensorCopyAccel::Impl]: Running peephole optimization pass
+2023-12-01T15:07:53Z INFO 60015 [TensorCopyAccel::Impl]: Accelerated 0 out of 2743 tensorcopy in Function: sg0000 average acceleration factor: -nan
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: tensorcopy_accel finished after 0.005 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  453mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88944 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running peephole_opts
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to peephole_opts: modules=1 functions=1 allocs=18509 blocks=1 instructions=88944 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [PeepholeOpts]: PeepholeOpts enabled? Recip: true Tsp: true Tc: true SplitSelect: true
+2023-12-01T15:07:53Z INFO 60015 [PeepholeOpts]: Split Select: 2
+2023-12-01T15:07:53Z INFO 60015 [PeepholeOpts]: TSP -> ACT: 429
+2023-12-01T15:07:53Z INFO 60015 [PeepholeOpts]: COPY -> ACT: 2742
+2023-12-01T15:07:53Z INFO 60015 [PeepholeOpts]: RECIPROCAL -> ACT: 0
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: peephole_opts finished after 0.022 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  453mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running lower_kernel
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to lower_kernel: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [LowerKernel]: Started running LowerKernel
+2023-12-01T15:07:53Z INFO 60015 [LowerKernel]: Start of kernel lowering pass, number of insts: 88946, number of allocs: 18509
+2023-12-01T15:07:53Z INFO 60015 [LowerKernel]: Scan BKs time (s): 0.003237
+2023-12-01T15:07:53Z INFO 60015 [LowerKernel]: Lower BKs time (s): 1e-06
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: lower_kernel finished after 0.004 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  453mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running build_fdeps
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to build_fdeps: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [build_flow_deps]: Start build fdeps. Invocation: 2Fri Dec  1 15:07:53 2023
+2023-12-01T15:07:53Z INFO 60015 [build_flow_deps]: Allocs: 18509 instructions: 88946
+2023-12-01T15:07:53Z INFO 60015 [build_flow_deps]: Build fdeps inserted 233953 edges 
+2023-12-01T15:07:53Z INFO 60015 [build_flow_deps]: Done build fdeps 233953 Fri Dec  1 15:07:53 2023
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: build_fdeps finished after 0.130 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  512mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running remove_redundancies
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to remove_redundancies: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [RemoveRedundancies]: remove_clobbered_writes
+2023-12-01T15:07:53Z INFO 60015 [RemoveRedundancies]: remove_clobbered_writes: 0
+2023-12-01T15:07:53Z INFO 60015 [RemoveRedundancies]: remove_useless_insts
+2023-12-01T15:07:53Z INFO 60015 [RemoveRedundancies]: remove Useless Instructions: 0
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: remove_redundancies finished after 0.039 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  507mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running anti_dependency_analyzer
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to anti_dependency_analyzer: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer]: Batch size: 1000
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer]: Analysis types: {DRAM,ALIAS,PSUM,SB}
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM3-32-128]: Finished analyzing 10092 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.99882/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM5-32-128]: Finished analyzing 10098 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.999143/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM4-32-128]: Finished analyzing 10059 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998819/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM6-0-32]: Finished analyzing 10168 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02869/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM2-32-128]: Finished analyzing 10236 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998839/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-DRAM]: Finished conservative analyzing 0 access patterns a mean/median -nan/0 intervals per access pattern and mean/median -nan/0 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM5-0-32]: Finished analyzing 10328 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.01879/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM3-0-32]: Finished analyzing 10343 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.01804/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM1-0-32]: Finished analyzing 10315 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02364/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM4-0-32]: Finished analyzing 10410 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02717/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM0-0-32]: Finished analyzing 10413 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.0279/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM7-0-32]: Finished analyzing 10428 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.01737/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM2-0-32]: Finished analyzing 10573 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02151/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM7-32-128]: Finished analyzing 10092 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.99882/0.999998 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM1-32-128]: Finished analyzing 10071 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998819/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM6-32-128]: Finished analyzing 9904 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998362/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-PSUM0-32-128]: Finished analyzing 10059 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998819/1 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-104-128]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94125/1.07032 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-96-104]: Finished analyzing 165722 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.95304/1.0689 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-8-32]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94125/1.07032 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-65-72]: Finished analyzing 165579 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.93966/1.06922 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-72-96]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94125/1.07032 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-40-64]: Finished analyzing 165573 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94075/1.06778 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-64-65]: Finished analyzing 165582 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94992/1.06922 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-33-40]: Finished analyzing 165602 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.94287/1.07094 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-32-33]: Finished analyzing 165883 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.91899/1.0704 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-1-8]: Finished analyzing 167679 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.91855/1.07322 intersections per interval.
+2023-12-01T15:07:53Z INFO 60015 [AntiDependencyAnalyzer-SB-0-1]: Finished analyzing 167687 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.91758/1.07264 intersections per interval.
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: anti_dependency_analyzer finished after 0.611 seconds
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: curr_vmrss:  630mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z USER 60015 [WalrusDriver]: Running post_sched
+2023-12-01T15:07:53Z INFO 60015 [WalrusDriver]: Inputs to post_sched: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:53Z INFO 60015 [post_scheduler]: Start PosT ScheD 3 sunda Fri Dec  1 15:07:53 2023
+2023-12-01T15:07:55Z INFO 60015 [post_scheduler]: Tensor CP elimination: 0
+2023-12-01T15:07:55Z INFO 60015 [post_scheduler]: Time-aware hwm post-sched
+2023-12-01T15:07:56Z INFO 60015 [post_scheduler]: Time-aware simulation time: 8887816
+2023-12-01T15:07:56Z INFO 60015 [post_scheduler]: Done  PosT ScheD Fri Dec  1 15:07:56 2023
+2023-12-01T15:07:56Z USER 60015 [WalrusDriver]: post_sched finished after 2.410 seconds
+2023-12-01T15:07:56Z INFO 60015 [WalrusDriver]: curr_vmrss:  690mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:56Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:56Z USER 60015 [WalrusDriver]: Running address_rotation_sb
+2023-12-01T15:07:56Z INFO 60015 [WalrusDriver]: Inputs to address_rotation_sb: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:56Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 4862 PSUM Banks
+2023-12-01T15:07:56Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 2110 PSUM Banks
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: PSUM Rotation rotated 2244 PSUM Banks
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 1414 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 9 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:57Z INFO 60015 [DMAOptimizationBase]: SB Rotation rotated 0 Sb address
+2023-12-01T15:07:57Z USER 60015 [WalrusDriver]: address_rotation_sb finished after 1.511 seconds
+2023-12-01T15:07:57Z INFO 60015 [WalrusDriver]: curr_vmrss:  637mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:57Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:57Z USER 60015 [WalrusDriver]: Running anti_dependency_analyzer
+2023-12-01T15:07:57Z INFO 60015 [WalrusDriver]: Inputs to anti_dependency_analyzer: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:57Z INFO 60015 [AntiDependencyAnalyzer]: Batch size: 1000
+2023-12-01T15:07:57Z INFO 60015 [AntiDependencyAnalyzer]: Analysis types: {DRAM,ALIAS,PSUM,SB}
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM0-0-32]: Finished analyzing 10104 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02508/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM1-0-32]: Finished analyzing 10090 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02606/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-DRAM]: Finished conservative analyzing 0 access patterns a mean/median -nan/0 intervals per access pattern and mean/median -nan/0 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM6-0-32]: Finished analyzing 10088 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.01733/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM4-32-128]: Finished analyzing 10201 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998834/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM4-0-32]: Finished analyzing 10440 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02295/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM3-0-32]: Finished analyzing 10337 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02244/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM5-32-128]: Finished analyzing 10275 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998845/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM1-32-128]: Finished analyzing 9763 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998336/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM2-32-128]: Finished analyzing 10089 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.999142/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM2-0-32]: Finished analyzing 10388 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.02465/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM5-0-32]: Finished analyzing 10584 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.0275/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM6-32-128]: Finished analyzing 9853 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.99879/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM0-32-128]: Finished analyzing 9851 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998789/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM7-0-32]: Finished analyzing 10947 access patterns a mean/median 1/1 intervals per access pattern and mean/median 1.01803/1 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM3-32-128]: Finished analyzing 9969 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998807/0.999998 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-PSUM7-32-128]: Finished analyzing 10610 access patterns a mean/median 1/1 intervals per access pattern and mean/median 0.998885/0.999998 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-104-128]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92387/1.06822 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-97-104]: Finished analyzing 165722 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.9357/1.06759 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-96-97]: Finished analyzing 165771 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.93511/1.06808 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-65-72]: Finished analyzing 165579 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92228/1.06767 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-72-96]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92387/1.06822 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-8-32]: Finished analyzing 165572 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92387/1.06822 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-40-64]: Finished analyzing 165573 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92337/1.06568 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-64-65]: Finished analyzing 165582 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.93254/1.07021 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-33-40]: Finished analyzing 165600 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.92602/1.06467 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-32-33]: Finished analyzing 165832 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.90262/1.06819 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-1-8]: Finished analyzing 167681 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.90131/1.07121 intersections per interval.
+2023-12-01T15:07:58Z INFO 60015 [AntiDependencyAnalyzer-SB-0-1]: Finished analyzing 167689 access patterns a mean/median 1/1 intervals per access pattern and mean/median 6.90034/1.07089 intersections per interval.
+2023-12-01T15:07:58Z USER 60015 [WalrusDriver]: anti_dependency_analyzer finished after 0.628 seconds
+2023-12-01T15:07:58Z INFO 60015 [WalrusDriver]: curr_vmrss:  632mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:58Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:58Z USER 60015 [WalrusDriver]: Running dep_opt
+2023-12-01T15:07:58Z INFO 60015 [WalrusDriver]: Inputs to dep_opt: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z INFO 60015 [build_flow_deps]: Start build fdeps. Invocation: 3Fri Dec  1 15:07:59 2023
+2023-12-01T15:07:59Z INFO 60015 [build_flow_deps]: Allocs: 18509 instructions: 88946
+2023-12-01T15:07:59Z INFO 60015 [build_flow_deps]: Build fdeps inserted 233305 edges 
+2023-12-01T15:07:59Z INFO 60015 [build_flow_deps]: Done build fdeps 233305 Fri Dec  1 15:07:59 2023
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: dep_opt finished after 0.786 seconds
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: curr_vmrss:  563mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: Running report_stats
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Inputs to report_stats: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z INFO 60015 [ReportStats]: Data Movement Statistics: sg0000
+┌─────────────┬────────────────────────────┬───────┬────────────┐
+│ Instruction │ Kind                       │ Count │ Bytes      │
+├─────────────┼────────────────────────────┼───────┼────────────┤
+│ Load        │ Const -> Internal          │ 4658  │ 2416148480 │
+│ Load        │ ExternalInput -> Internal  │ 2     │ 64         │
+│ Save        │ Internal -> ExternalOutput │ 1     │ 16384      │
+└─────────────┴────────────────────────────┴───────┴────────────┘
+
+2023-12-01T15:07:59Z INFO 60015 [ReportStats]: 
+┌─────────────────────┬───────┐
+│ Bytes per partition │ Count │
+├─────────────────────┼───────┤
+│ 4                   │ 2     │
+│ 32                  │ 47    │
+│ 256                 │ 1     │
+│ 2048                │ 3     │
+│ 4096                │ 4608  │
+└─────────────────────┴───────┘
+
+2023-12-01T15:07:59Z INFO 60015 [ReportStats]: MM Stats: #MatMults 76536 #MatMult-Transposes 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: report_stats finished after 0.018 seconds
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: curr_vmrss:  556mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: Running assign_trigger_engine
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Inputs to assign_trigger_engine: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z INFO 60015 [AssignTriggerEngine]: Assigned trigger engine for 0 DMA instructions
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: assign_trigger_engine finished after 0.023 seconds
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: curr_vmrss:  561mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: Running alloc_queues
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Inputs to alloc_queues: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: alloc_queues finished after 0.009 seconds
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: curr_vmrss:  560mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z USER 60015 [WalrusDriver]: Running dep_reduction
+2023-12-01T15:07:59Z INFO 60015 [WalrusDriver]: Inputs to dep_reduction: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Start Dependency Reduction
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing async instrs...
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing secondary edges per engine...
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing secondary edges per engine, Done. Num edges removed 70871
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing redundant descendants...
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing redundant descendants, Done. Num edges removed 4645
+2023-12-01T15:07:59Z INFO 60015 [DepReduction]: Processing async instrs, Done. Num edges removed 75516
+2023-12-01T15:08:00Z INFO 60015 [DepReduction]: Num Async removed: 0
+2023-12-01T15:08:00Z INFO 60015 [DepReduction]: Finished dependency reduction: 479219 removed, new total 19543
+2023-12-01T15:08:00Z INFO 60015 [DepReduction]: Finished Dependency Reduction
+2023-12-01T15:08:00Z USER 60015 [WalrusDriver]: dep_reduction finished after 0.867 seconds
+2023-12-01T15:08:00Z INFO 60015 [WalrusDriver]: curr_vmrss:  580mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:00Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:00Z USER 60015 [WalrusDriver]: Running bir_racecheck
+2023-12-01T15:08:00Z INFO 60015 [WalrusDriver]: Inputs to bir_racecheck: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: bir_racecheck finished after 0.989 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  768mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18509 memory location(s), 1 block(s), and 88946 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running lower_dma
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to lower_dma: modules=1 functions=1 allocs=18509 blocks=1 instructions=88946 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: lower_dma finished after 0.102 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  603mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 88947 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running coalesce_dma_blocks
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to coalesce_dma_blocks: modules=1 functions=1 allocs=18511 blocks=1 instructions=88947 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z INFO 60015 [CoalesceDmaBlocks]: Coaleseced 2 DMA triggers
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: coalesce_dma_blocks finished after 0.049 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  604mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 88945 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running alloc_semaphores
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to alloc_semaphores: modules=1 functions=1 allocs=18511 blocks=1 instructions=88945 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: alloc_semaphores finished after 0.088 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  603mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 88945 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running expand_inst_late
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to expand_inst_late: modules=1 functions=1 allocs=18511 blocks=1 instructions=88945 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: expand_inst_late finished after 0.007 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  603mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 88945 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running lower_sync
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to lower_sync: modules=1 functions=1 allocs=18511 blocks=1 instructions=88945 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: lower_sync finished after 0.034 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  612mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92724 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running lower_act
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to lower_act: modules=1 functions=1 allocs=18511 blocks=1 instructions=92724 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: lower_act finished after 0.009 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  612mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running lower_dve
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to lower_dve: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: lower_dve finished after 0.090 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  629mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running lower_ap
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to lower_ap: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: lower_ap finished after 0.019 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  613mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running alloc_regs
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to alloc_regs: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z INFO 60015 [AllocRegs]:   allocating REG
+2023-12-01T15:08:01Z INFO 60015 [AllocRegs]:     main loop iteration 1
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: alloc_regs finished after 0.001 seconds
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: curr_vmrss:  613mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:01Z USER 60015 [WalrusDriver]: Running birverifier
+2023-12-01T15:08:01Z INFO 60015 [WalrusDriver]: Inputs to birverifier: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:02Z USER 60015 [WalrusDriver]: birverifier finished after 0.232 seconds
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: curr_vmrss:  614mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:02Z USER 60015 [WalrusDriver]: Running codegen
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: Inputs to codegen: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Total compiler allocated DRAM tensors: 0 GB
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Total un-allocated DRAM tensors by kind: 
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: 
+┌────────────────┬─────────────┐
+│ TensorKind     │ Size (GB)   │
+├────────────────┼─────────────┤
+│ ExternalInput  │ 1.19209e-07 │
+│ ExternalOutput │ 1.52588e-05 │
+│ Const          │ 2.25046     │
+│ Pointer        │ 1.49012e-08 │
+└────────────────┴─────────────┘
+
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Total runtime managed DRAM tensors: 2.25048 GB
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Instruction Stats: 
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: 
+┌────────────────────┬───────┐
+│ Opcode             │ Count │
+├────────────────────┼───────┤
+│ MATMUL             │ 76920 │
+│ LDWEIGHTS          │ 76920 │
+│ PSEUDO_DMA_TRIGGER │ 4661  │
+│ EVENT_SEMAPHORE    │ 3779  │
+│ ACTIVATE           │ 3368  │
+│ TENSOR_SCALAR      │ 3126  │
+│ TENSOR_TENSOR      │ 866   │
+│ LOAD_MASK_SELECT   │ 192   │
+│ STREAM_SHUFFLE     │ 192   │
+│ DRAIN              │ 100   │
+│ TENSOR_REDUCE      │ 97    │
+│ ACT_TABLE_LOAD     │ 50    │
+│ RECIPROCAL         │ 48    │
+│ TENSOR_SCALAR_ADDR │ 18    │
+│ IOTA               │ 9     │
+│ PSEUDO_DMA_MEMCPY  │ 9     │
+│ MEMSET             │ 8     │
+│ COPY               │ 2     │
+│ COPY_PREDICATED    │ 2     │
+│ CAST               │ 1     │
+│ STREAM_TRANSPOSE   │ 1     │
+│ NOP                │ 1     │
+└────────────────────┴───────┘
+
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: 
+┌────────────┬────────┐
+│ Engine     │ Count  │
+├────────────┼────────┤
+│ Pool       │ 30     │
+│ Activation │ 3599   │
+│ PE         │ 155566 │
+│ DVE        │ 4539   │
+│ SP         │ 6636   │
+└────────────┴────────┘
+
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Total instructions: 170370 (0.0101548 GB)
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Number of DMA descriptors on each queue:
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: 
+┌─────────────────┬─────────┐
+│ Queue           │ Count   │
+├─────────────────┼─────────┤
+│ qPoolPIO0       │ 16      │
+│ qSPPIO0         │ 64      │
+│ qSPSpillReload0 │ 1191940 │
+└─────────────────┴─────────┘
+
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Total descriptors: 1192020 (0.0177625 GB)
+2023-12-01T15:08:02Z INFO 60015 [Codegen]: Estimated peak DRAM usage: 2.27839 GB
+2023-12-01T15:08:02Z USER 60015 [WalrusDriver]: codegen finished after 0.807 seconds
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: curr_vmrss:  759mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:02Z USER 60015 [WalrusDriver]: Running neff_packager
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: Inputs to neff_packager: modules=1 functions=1 allocs=18511 blocks=1 instructions=92774 Max writers: 128 Max Readers: 888
+2023-12-01T15:08:02Z USER 60015 [WalrusDriver]: neff_packager finished after 0.004 seconds
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: curr_vmrss:  669mb, ru_maxrss:  14664mb (delta=0mb)
+2023-12-01T15:08:02Z INFO 60015 [WalrusDriver]: Output has 1 module(s), 1 function(s), 18511 memory location(s), 1 block(s), and 92774 instruction(s). Max writers: 128 Max Readers: 888
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.WalrusDriver.0]: walrus_driver Done. Status: 0
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.WalrusDriver.0]: Job #0 finished
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished job job.WalrusDriver.0
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Starting job job.BIRLinker.0
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.BIRLinker.0]: Replay this job by calling: /opt/conda/bin/neuronx-cc compile --framework XLA --state '{"model": ["/home/model-server/tmp/tmp7ka_novp/model"], "tensormap": "tensor_map.json", "bir": "bir.json", "lorean_sg_key": null, "input_name_map": null, "output_name_map": null, "constant_tensors": null, "state_dir": "/opt/app/inferentia/benchmark/samples/neuronxcc-hroisih8/sg00", "state_id": "sg00"}' --pipeline BIRLinker
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.BIRLinker.0]: BIRLinker cwd: /opt/app/inferentia/benchmark/samples/neuronxcc-hroisih8
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.BIRLinker.0]: Linking not needed. Netlist doesnt exist
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished job job.BIRLinker.0
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Starting job job.Kelper.0
+2023-12-01T15:08:03Z INFO 60009 140695329314624 [job.Kelper.0]: Replay this job by calling: /opt/conda/bin/neuronx-cc compile --framework XLA --state '{"model": ["/home/model-server/tmp/tmp7ka_novp/model"], "tensormap": "tensor_map.json", "bir": "bir.json", "lorean_sg_key": null, "input_name_map": null, "output_name_map": null, "constant_tensors": null, "state_dir": "/opt/app/inferentia/benchmark/samples/neuronxcc-hroisih8/sg00", "state_id": "sg00"}' --pipeline Kelper
+2023-12-01T15:08:12Z INFO 60009 140695329314624 [job.Kelper.0]: IR signature: 42ec81d18f416363f874e831c96574a6 for neff artifacts
+2023-12-01T15:08:15Z INFO 60009 140695329314624 [job.Kelper.0]: neuronxcc version is 2.10.0.35+3817a0c8c, neff version is 2.0 (features 0)
+2023-12-01T15:08:16Z USER 60009 140695329314624 [job.Kelper.0]: Wrote /home/model-server/tmp/tmp7ka_novp/graph.neff
+2023-12-01T15:08:17Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished job job.Kelper.0
+2023-12-01T15:08:17Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Finished pipeline Pipeline
+2023-12-01T15:08:17Z INFO 60009 140695329314624 [pipeline.Pipeline.0]: Job #0 finished
+2023-12-01T15:08:19Z USER 60009 140695329314624 [root]: Compiler status PASS
+2023-12-01T15:08:20Z INFO 59977 140695329314624 [root]: Subcommand returned with exitcode=0
