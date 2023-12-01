@@ -1,5 +1,6 @@
 import logging
 import argparse
+import torch
 import csv
 from utils import (
     measure_latency,
@@ -48,11 +49,19 @@ def main(args):
     # load tokenizer and  model
     tokenizer_class, model_class = models.get(args.model_id)
     tokenizer = tokenizer_class.from_pretrained(args.model_id, legacy=False)
-    model = model_class.from_pretrained(
-        args.model_id, torchscript=True,
-        torch_dtype=PRECISION,
-        # quantization_config=quantization_config,
-    )
+    if args.model_id == "Rostlab/prot_t5_xl_half_uniref50-enc":
+        model = model_class.from_pretrained(
+            args.model_id, torchscript=True,
+            torch_dtype=PRECISION,
+            # quantization_config=quantization_config,
+        )
+    else:
+        model = model_class.from_pretrained(
+            args.model_id, torchscript=True,
+            # quantization_config=quantization_config,
+        )
+    model.requires_grad_(False) # freeze weights
+    model.eval()
     
     for sequence_length in sequence_lengths:
         # compile model if neuron

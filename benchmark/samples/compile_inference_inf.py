@@ -117,6 +117,7 @@ def main():
             torch_dtype=precision,
             # quantization_config=quantization_config,
         )
+        model.eval()
 
     # compile model if neuron
     if is_neuron:

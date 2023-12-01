@@ -1,5 +1,6 @@
 import os
 import boto3
+import torch
 import requests
 from time import perf_counter
 import numpy as np
@@ -24,11 +25,13 @@ def measure_latency(model, tokenizer, sequence_length, batch_size, is_neuron=Fal
     latencies = []
     # warm up
     for _ in range(WARM_UP_STEPS):
-        _ = model(*payload)
+        with torch.no_grad():
+            _ = model(*payload)
     # Timed run
     for _ in range(INFERENCE_STEPS):
         start_time = perf_counter()
-        _ = model(*payload)
+        with torch.no_grad():
+            _ = model(*payload)
         latency = perf_counter() - start_time
         latencies.append(latency)
     # Compute run statistics
