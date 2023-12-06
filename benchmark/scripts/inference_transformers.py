@@ -85,14 +85,7 @@ def main(args):
                 # https://awsdocs-neuron.readthedocs-hosted.com/en/latest/compiler/neuronx-cc/api-reference-guide/neuron-compiler-cli-reference-guide.html
                 compiler_workdir = f'/opt/app/inferentia/benchmark/compiled_models/{args.model_id.replace("-","_")}/batch={batch_size}_seq_len={max_sequence_length}'
                 neuron_compiler_args = [
-                    "--target=inf2",
-                    "--model-type=transformer",
-                    "--auto-cast=matmult",
-                    "--auto-cast-type=bf16",
-                    "--optlevel=2",
-                    #"--distribution-strategy=fsdp",
                     f'--logfile={compiler_workdir}/log-neuron-cc.txt',
-                    #f'--output={NEURON_COMPILER_WORKDIR}/{args.model_id.replace("-","_").replace("/", "_")}_{sequence_length}.neff',
                 ]
                 
                 os.environ['NEURON_COMPILE_CACHE_URL'] = compiler_workdir

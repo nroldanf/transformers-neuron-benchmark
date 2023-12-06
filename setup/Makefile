@@ -19,7 +19,7 @@ run-container-interactive-inf:
 	docker run -it \
 		-p 80:8000 \
 		-v /home/ubuntu/workdir/transformers-neuron-benchmark/:/opt/app/inferentia \
-		-e AWS_NEURON_VISIBLE_DEVICES=ALL ${IMAGE_NAME} bash
+		-e AWS_NEURON_VISIBLE_DEVICES=ALL -e NEURON_RT_VISIBLE_CORES=0-5 -e NEURON_RT_NUM_CORES=0-5 ${IMAGE_NAME} bash
 
 # Run gpu container
 # make run-container-interactive-gpu IMAGE_NAME=transformers-gpu
