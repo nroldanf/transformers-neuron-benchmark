@@ -2,7 +2,7 @@ import typer
 import logging
 import pandas as pd
 import numpy as np
-from datasets import Dataset
+from datasets import Dataset, DatasetDict
 from models import Device, PLMModel
 from transformers import (
     AutoModelForSequenceClassification,
@@ -24,29 +24,17 @@ def compute_metrics(eval_pred):
 
 
 def create_datasets(cytosolic_df: pd.DataFrame, membrane_df: pd.DataFrame):
-    cytosolic_sequences = cytosolic_df["Sequence"].tolist()
-    cytosolic_labels = [0 for protein in cytosolic_sequences]
-
-    membrane_sequences = membrane_df["Sequence"].tolist()
-    membrane_labels = [1 for protein in membrane_sequences]
-
-    sequences = cytosolic_sequences + membrane_sequences
-    labels = cytosolic_labels + membrane_labels
-
-    assert len(sequences) == len(labels)
-
-    train_sequences, test_sequences, train_labels, test_labels = train_test_split(
-        sequences, labels, test_size=0.25, shuffle=True
+    cytosolic_df["labels"] = 0
+    membrane_df["labels"] = 1
+    df = pd.concat([cytosolic_df, membrane_df], ignore_index=True)
+    train_df, test_df = train_test_split(
+        df, test_size=0.25, stratify=df["labels"], shuffle=True
     )
-
-    train_dataset = Dataset.from_pandas(train_sequences)
-    test_dataset = Dataset.from_pandas(test_sequences)
-
-    train_dataset = train_dataset.add_column("labels", train_labels)
-    test_dataset = test_dataset.add_column("labels", test_labels)
-
-    num_labels = max(train_labels + test_labels) + 1  # Add 1 since 0 can be a label
-
+    train_dataset = Dataset.from_pandas(train_df)
+    test_dataset = Dataset.from_pandas(test_df)
+    num_labels = (
+        max(train_dataset["labels"] + test_dataset["labels"]) + 1
+    )  # Add 1 since 0 can be a label
     return train_dataset, test_dataset, num_labels
 
 
@@ -68,7 +56,7 @@ def run(
     membrane_df = pd.read_parquet("membrane.parquet")
 
     # Create the datasets
-    train_dataset, test_dataset, num_labels = create_datasets(cytosolic_df, membrane_df)
+    train_dataset, val_dataset, num_labels = create_datasets(cytosolic_df, membrane_df)
 
     # Load the vocabulary
     tokenizer = AutoTokenizer.from_pretrained(model_name.value)
@@ -78,10 +66,18 @@ def run(
         model_name.value, num_labels=num_labels
     )
 
+    # Tokenize datasets
+    def tokenize_function(dataset: DatasetDict):
+        return tokenizer(dataset["Sequence"], padding="max_length", truncation=True)
+
+    raw_datasets = DatasetDict({"train": train_dataset, "val": val_dataset})
+    tokenized_datasets = raw_datasets.map(
+        tokenize_function, batched=True, remove_columns=["Sequence"]
+    )
+
     # Define the training arguments
     training_args = TrainingArguments(
-        f"{model_name.value.split('/')[-1]}-finetuned-localization",
-        output_dir="../models/",
+        output_dir=f"../models/{model_name.value.split('/')[-1]}-finetuned-localization",
         save_total_limit=1,
         evaluation_strategy="epoch",
         save_strategy="epoch",
@@ -93,20 +89,18 @@ def run(
         load_best_model_at_end=True,
         metric_for_best_model="accuracy",
         push_to_hub=False,
-        seed=seed.value,
-        group_by_length=True,  # Whether or not to group together samples of roughly the same length in the training dataset (to minimize padding applied and be more efficient)
+        seed=42,
+        # group_by_length=True,  # Whether or not to group together samples of roughly the same length in the training dataset (to minimize padding applied and be more efficient)
     )
-
     # Define the trainer
     trainer = Trainer(
         model,
         training_args,
-        train_dataset=train_dataset,
-        eval_dataset=test_dataset,
+        train_dataset=tokenized_datasets["train"],
+        eval_dataset=tokenized_datasets["val"],
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
     )
-
     trainer.train()
 
 
