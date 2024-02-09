@@ -1,6 +1,6 @@
 import torch
 from transformers import (
-    AutoTokenizer, 
+    AutoTokenizer,
     AutoModelForSequenceClassification,
     T5Tokenizer,
     T5Model,
@@ -24,7 +24,14 @@ PRECISION = torch.bfloat16
 
 SEQUENCE_LENGTHS = [8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
 USE_MAX_SEQUENCE_LENGTH = False
-BENCHMARK_PARAMS = ["time_avg_ms", "time_std_ms", "time_p95_ms", "sequence_length", "batch_size", "instance_type"]
+BENCHMARK_PARAMS = [
+    "time_avg_ms",
+    "time_std_ms",
+    "time_p95_ms",
+    "sequence_length",
+    "batch_size",
+    "instance_type",
+]
 
 
 models = {

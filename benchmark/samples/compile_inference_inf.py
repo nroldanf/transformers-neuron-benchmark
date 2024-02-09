@@ -4,7 +4,7 @@ import re
 import boto3
 import requests
 from transformers import (
-    AutoTokenizer, 
+    AutoTokenizer,
     AutoModelForSequenceClassification,
     T5Tokenizer,
     T5Model,
@@ -13,8 +13,9 @@ from transformers import (
     EsmModel,
     BertTokenizer,
     BertModel,
-    BitsAndBytesConfig
+    BitsAndBytesConfig,
 )
+
 # from optimum.neuron import NeuronModelForFeatureExtraction, pipeline
 
 import torch
@@ -43,6 +44,7 @@ precision = torch.bfloat16
 #     bnb_4bit_use_double_quant=True,
 # )
 
+
 def get_instance_type(region_name="us-east-1"):
     # Create a Boto3 EC2 client
     ec2_client = boto3.client("ec2", region_name=region_name)
@@ -53,18 +55,22 @@ def get_instance_type(region_name="us-east-1"):
     instance_id = instance_id_response.text
 
     # Describe the instance to get information, including the instance type
-    response = ec2_client.describe_instances(InstanceIds=[instance_id]) # 
+    response = ec2_client.describe_instances(InstanceIds=[instance_id])  #
 
     # Extract and return the instance type
     instance_type = response["Reservations"][0]["Instances"][0]["InstanceType"]
     return instance_type
+
 
 def generate_sample_inputs(tokenizer, sequence_length, batch_size=1):
     # TODO: adapt this for any model (pre-processing steps), OUTPUTS, device, etc
     inputs = [DUMMY_INPUT] * batch_size
     inputs_formatted = [format_protein_seqs(i) for i in inputs]
     tokens = tokenizer(
-        inputs_formatted, max_length=sequence_length, padding="max_length", return_tensors="pt"
+        inputs_formatted,
+        max_length=sequence_length,
+        padding="max_length",
+        return_tensors="pt",
     )
     return tuple(tokens.values())
 
@@ -89,6 +95,7 @@ def format_protein_seqs(protein_seq: str) -> str:
     seq = " ".join(seq)
     return seq
 
+
 def compile_model_inf2(model, tokenizer, sequence_length, batch_size, num_neuron_cores):
     # use only one neuron core
     os.environ["NEURON_RT_NUM_CORES"] = str(num_neuron_cores)
@@ -97,24 +104,25 @@ def compile_model_inf2(model, tokenizer, sequence_length, batch_size, num_neuron
     payload = generate_sample_inputs(tokenizer, sequence_length, batch_size)
     return torch_neuronx.trace(model, payload)
 
+
 def main():
     instance_type = get_instance_type("us-west-2")
     batch_size = 1
     num_neuron_cores = 2
-    
+
     is_neuron = True
 
     # define sequence lengths to benchmark
     sequence_lengths = [8]
-    
 
     for sequence_length in sequence_lengths:
         # load tokenizer and  model
         tokenizer_class, model_class = models.get(model_id)
-        
+
         tokenizer = tokenizer_class.from_pretrained(model_id, legacy=False)
         model = model_class.from_pretrained(
-            model_id, torchscript=True,
+            model_id,
+            torchscript=True,
             torch_dtype=precision,
             # quantization_config=quantization_config,
         )
@@ -139,6 +147,7 @@ def main():
     print(inputs)
     with torch.no_grad():
         _ = model(*inputs)
+
 
 if __name__ == "__main__":
     main()

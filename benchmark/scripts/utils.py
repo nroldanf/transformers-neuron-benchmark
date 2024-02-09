@@ -10,15 +10,20 @@ from constants import *
 # TODO: Include batch size as a parameter. For now, batch is 1 and the sequence lenght changes
 
 
-def generate_sample_inputs(tokenizer, max_sequence_length, batch_size=1, is_neuron=False):
+def generate_sample_inputs(
+    tokenizer, max_sequence_length, batch_size=1, is_neuron=False
+):
     # TODO: adapt this for any model (pre-processing steps), OUTPUTS, device, etc
     inputs = [DUMMY_INPUT] * batch_size
     formatted = [format_protein_seqs(i) for i in inputs]
     tokenized = tokenizer(
-        formatted, max_length=max_sequence_length, padding="max_length", return_tensors="pt"
+        formatted,
+        max_length=max_sequence_length,
+        padding="max_length",
+        return_tensors="pt",
     )
     if not is_neuron:
-        tokenized.to("cuda")        
+        tokenized.to("cuda")
     return tuple(tokenized.values())
 
 
@@ -28,8 +33,9 @@ def measure_latency(model, tokenizer, sequence_length, batch_size, is_neuron=Fal
     # this only works for the non-zeroth dimension
     if is_neuron:
         import torch_neuronx
+
         model = torch_neuronx.dynamic_batch(model)
-    
+
     latencies = []
     # warm up
     for _ in range(WARM_UP_STEPS):
@@ -55,15 +61,27 @@ def measure_latency(model, tokenizer, sequence_length, batch_size, is_neuron=Fal
     }
 
 
-def compile_model_inf1(model, tokenizer, max_sequence_length, batch_size, num_neuron_cores, is_neuron):
+def compile_model_inf1(
+    model, tokenizer, max_sequence_length, batch_size, num_neuron_cores, is_neuron
+):
     os.environ["NEURON_RT_NUM_CORES"] = str(num_neuron_cores)
     import torch.neuron
 
-    inputs = generate_sample_inputs(tokenizer, max_sequence_length, batch_size, is_neuron)
+    inputs = generate_sample_inputs(
+        tokenizer, max_sequence_length, batch_size, is_neuron
+    )
     return torch.neuron.trace(model, example_inputs=inputs)
 
 
-def compile_model_inf2(model, tokenizer, max_sequence_length, batch_size, num_neuron_cores, compiler_args, compiler_workdir):
+def compile_model_inf2(
+    model,
+    tokenizer,
+    max_sequence_length,
+    batch_size,
+    num_neuron_cores,
+    compiler_args,
+    compiler_workdir,
+):
     # use only one neuron core
     os.environ["NEURON_RT_NUM_CORES"] = str(num_neuron_cores)
     import torch_neuronx
