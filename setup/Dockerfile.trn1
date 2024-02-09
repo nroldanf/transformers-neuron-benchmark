@@ -1,0 +1,8 @@
+# https://github.com/aws/deep-learning-containers/blob/master/available_images.md#huggingface-neuron-training-containers
+FROM 763104351884.dkr.ecr.us-east-1.amazonaws.com/huggingface-pytorch-training-neuronx:1.13.1-transformers4.34.1-neuronx-py310-sdk2.15.0-ubuntu20.04
+RUN python3 -m pip config set global.extra-index-url https://pip.repos.neuron.amazonaws.com
+
+COPY requirements_trn1.txt .
+RUN python3 -m pip install --upgrade -r requirements_trn1.txt
+
+WORKDIR /opt/app/trainium

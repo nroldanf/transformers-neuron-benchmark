@@ -1,5 +1,6 @@
 import typer
 import logging
+import os
 import pandas as pd
 import numpy as np
 from datasets import Dataset, DatasetDict
@@ -7,6 +8,7 @@ from models import Device, PLMModel
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
+    AutoConfig,
 )
 from sklearn.model_selection import train_test_split
 import evaluate
@@ -41,18 +43,27 @@ def create_datasets(cytosolic_df: pd.DataFrame, membrane_df: pd.DataFrame):
 def run(
     model_name: PLMModel,
     device: Device = Device.gpu,
+    epochs: float = 1.0,
     seed: int = 42,
+    neuron_cache_url: str = None,
 ):
+    os.environ["NEURON_COMPILE_CACHE_URL"] = neuron_cache_url
+
     # Import correct package according to the device
     if device.value == "gpu":
         from transformers import TrainingArguments, Trainer
+
+        # device = "gpu"
     elif device.value == "neuron":
+        # from optimum.neuron import NeuronModelForSequenceClassification as AutoModelForSequenceClassification
         from optimum.neuron import NeuronTrainer as Trainer
         from optimum.neuron import NeuronTrainingArguments as TrainingArguments
 
+        # device = "xla"
+
     # Load the data
-    cytosolic_df = pd.read_parquet("cytosolic.parquet")
-    membrane_df = pd.read_parquet("membrane.parquet")
+    cytosolic_df = pd.read_parquet("../data/cytosolic.parquet")
+    membrane_df = pd.read_parquet("../data/membrane.parquet")
 
     # Create the datasets
     train_dataset, val_dataset, num_labels = create_datasets(cytosolic_df, membrane_df)
@@ -64,6 +75,7 @@ def run(
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name.value, num_labels=num_labels
     )
+    # model.to(device)
 
     # Tokenize datasets
     def tokenize_function(dataset: DatasetDict):
@@ -73,7 +85,6 @@ def run(
     tokenized_datasets = raw_datasets.map(
         tokenize_function, batched=True, remove_columns=["Sequence"]
     )
-
     # Define the training arguments
     training_args = TrainingArguments(
         output_dir=f"../models/{model_name.value.split('/')[-1]}-finetuned-localization",
@@ -83,12 +94,13 @@ def run(
         learning_rate=2e-5,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        num_train_epochs=1,
+        num_train_epochs=epochs,
         weight_decay=0.01,
         load_best_model_at_end=True,
         metric_for_best_model="accuracy",
         push_to_hub=False,
-        seed=seed.value,
+        seed=seed,
+        # group_by_length=True,  # Whether or not to group together samples of roughly the same length in the training dataset (to minimize padding applied and be more efficient)
     )
     # Define the trainer
     trainer = Trainer(

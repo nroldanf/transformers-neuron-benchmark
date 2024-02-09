@@ -44,9 +44,24 @@ The models are:
 - Run the benchmark scripts.
 
 ```bash
-torchrun --nproc_per_node=2 trainer_api_cli.py \
- --model_name esm2_35M \
- --device neuron
+torchrun --nproc_per_node=2 trainer_api_cli.py facebook/esm2_t6_8M_UR50D --device neuron
+```
+
+If want to skip the compilation before training:
+
+[Follow this guide here](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-neuronx/api-reference-guide/training/pytorch-neuron-parallel-compile.html)
+
+neuron_parallel_compile is an utility to extract graphs from trial run of your script, perform parallel compilation of the graphs, and populate the persistent cache with compiled graphs. Your trial run should be limited to about 100 steps, enough for the utility to extract the different graphs needed for full execution.
+To avoid hang during extraction, please make sure to use xm.save instead of torch.save to save checkpoints.
+After parallel compile, the actual run of your script will be faster since the compiled graphs are already cached. There may be additional compilations due to unreached execution paths, or changes in parameters such as number of data parallel workers.
+
+```bash
+neuron_parallel_compile torchrun --nproc_per_node=1 trainer_api.py facebook/esm2_t6_8M_UR50D --device neuron --epochs 0.1 --seed 42 --neuron-cache-url s3://nicolas-loka-bucket/neuron/
+```
+
+[Follow this guide here](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/compiler/neuronx-cc/api-reference-guide/neuron-compiler-cli-reference-guide.html#neuron-compiler-cli-reference-guide-neuronx-cc )
+```bash
+neuronx-cc compile <model-files.hlo.pb> --framework XLA --target trn1 --model-type transformer --auto-cast none --optlevel 2 --output esm.neff --verbose info
 ```
 
 

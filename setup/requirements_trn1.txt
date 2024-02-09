@@ -1,0 +1,8 @@
+boto3==1.29.7
+awscli==1.30.7
+accelerate
+datasets
+pandas
+scikit-learn
+evaluate
+typer
