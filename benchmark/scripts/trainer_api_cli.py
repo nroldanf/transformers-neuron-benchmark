@@ -7,7 +7,6 @@ from models import Device, PLMModel
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
-    AutoConfig,
 )
 from sklearn.model_selection import train_test_split
 import evaluate
@@ -89,8 +88,7 @@ def run(
         load_best_model_at_end=True,
         metric_for_best_model="accuracy",
         push_to_hub=False,
-        seed=42,
-        # group_by_length=True,  # Whether or not to group together samples of roughly the same length in the training dataset (to minimize padding applied and be more efficient)
+        seed=seed.value,
     )
     # Define the trainer
     trainer = Trainer(

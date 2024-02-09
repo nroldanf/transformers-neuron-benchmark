@@ -43,6 +43,13 @@ The models are:
 - Run the image in interactive mode.
 - Run the benchmark scripts.
 
+```bash
+torchrun --nproc_per_node=2 trainer_api_cli.py \
+ --model_name esm2_35M \
+ --device neuron
+```
+
+
 ## Benchmark Tasks
 The benchmark comprises the following tasks:
 1. Training using Protein Language Models.
