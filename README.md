@@ -23,10 +23,17 @@ This document presents the benchmark results of some of most common Protein Lang
 
 The models are:
 
-- ESM1-b from Meta AI
-- ESM2 from Meta AI
-- ProtBERT from RostLab
-- ProtT5 from RostLab
+| Model                	| #Params     	| Attention Heads 	|
+|----------------------	|-------------	|-----------------	|
+| protBERT             	| 419.933.186 	| 30              	|
+| protT5               	|             	|                 	|
+| esm1b_t33_650M_UR50S 	| 652.359.063 	| 33              	|
+| esm2_t6_8M_UR50D     	| 7.840.763   	| 6               	|
+| esm2_t12_35M_UR50D   	| 33.993.843  	| 12              	|
+| esm2_t30_150M_UR50D  	| 148.796.763 	| 30              	|
+| esm2_t33_650M_UR50D  	| 652.356.503 	| 33              	|
+| esm2_t36_3B_UR50D    	|             	|                 	|
+| esm2_t48_15B_UR50D   	|             	|                 	|
 
 ## Benchmark Setup
 - Start a EC2 instance according to the following table.
@@ -56,7 +63,7 @@ To avoid hang during extraction, please make sure to use xm.save instead of torc
 After parallel compile, the actual run of your script will be faster since the compiled graphs are already cached. There may be additional compilations due to unreached execution paths, or changes in parameters such as number of data parallel workers.
 
 ```bash
-neuron_parallel_compile torchrun --nproc_per_node=1 trainer_api.py facebook/esm2_t6_8M_UR50D --device neuron --epochs 0.1 --seed 42 --neuron-cache-url s3://nicolas-loka-bucket/neuron/
+neuron_parallel_compile torchrun --nproc_per_node=1 trainer_api.py facebook/esm2_t6_8M_UR50D --device neuron --epochs 0.1 --seed 42 --neuron-cache-url s3://nicolas-loka-bucket/neuron/esm2_t6_8M_UR50D
 ```
 
 [Follow this guide here](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/compiler/neuronx-cc/api-reference-guide/neuron-compiler-cli-reference-guide.html#neuron-compiler-cli-reference-guide-neuronx-cc )
