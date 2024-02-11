@@ -5,6 +5,10 @@ from time import perf_counter
 import torch
 import requests
 import numpy as np
+import umap
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 from constants import *
 
 # TODO: Include batch size as a parameter. For now, batch is 1 and the sequence lenght changes
@@ -132,3 +136,68 @@ def format_protein_seqs(protein_seq: str) -> str:
     seq = re.sub(r"[UZOB]", "X", seq)
     seq = " ".join(seq)
     return seq
+
+
+def draw_pca(
+    data: np.ndarray, n_components=2, title="", svd_solver="auto", random_state=42
+):
+    pca = PCA(
+        n_components=n_components, svd_solver=svd_solver, random_state=random_state
+    )
+    u = pca.fit_transform(data)
+    fig = plt.figure()
+    if n_components == 1:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], range(len(u)))
+    if n_components == 2:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], u[:, 1])
+    if n_components == 3:
+        ax = fig.add_subplot(111, projection="3d")
+        ax.scatter(u[:, 0], u[:, 1], u[:, 2], s=100)
+    plt.title(title, fontsize=18)
+
+
+def draw_tsne(data, n_components=2, random_state=42, perplexity=5, title=""):
+    tsne = TSNE(
+        n_components=n_components,
+        perplexity=perplexity,
+        random_state=random_state,
+        learning_rate="auto",
+        n_iter=1500,
+    )
+    u = tsne.fit_transform(data)
+    fig = plt.figure()
+    if n_components == 1:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], range(len(u)))
+    if n_components == 2:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], u[:, 1])
+    if n_components == 3:
+        ax = fig.add_subplot(111, projection="3d")
+        ax.scatter(u[:, 0], u[:, 1], u[:, 2], s=100)
+    plt.title(title, fontsize=18)
+
+
+def draw_umap(
+    data, n_neighbors=15, min_dist=0.1, n_components=2, metric="euclidean", title=""
+):
+    fit = umap.UMAP(
+        n_neighbors=n_neighbors,
+        min_dist=min_dist,
+        n_components=n_components,
+        metric=metric,
+    )
+    u = fit.fit_transform(data)
+    fig = plt.figure()
+    if n_components == 1:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], range(len(u)))
+    if n_components == 2:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:, 0], u[:, 1])
+    if n_components == 3:
+        ax = fig.add_subplot(111, projection="3d")
+        ax.scatter(u[:, 0], u[:, 1], u[:, 2], s=100)
+    plt.title(title, fontsize=18)

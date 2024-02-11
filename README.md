@@ -23,17 +23,17 @@ This document presents the benchmark results of some of most common Protein Lang
 
 The models are:
 
-| Model                	| #Params     	| Attention Heads 	|
-|----------------------	|-------------	|-----------------	|
-| protBERT             	| 419.933.186 	| 30              	|
-| protT5               	|             	|                 	|
-| esm1b_t33_650M_UR50S 	| 652.359.063 	| 33              	|
-| esm2_t6_8M_UR50D     	| 7.840.763   	| 6               	|
-| esm2_t12_35M_UR50D   	| 33.993.843  	| 12              	|
-| esm2_t30_150M_UR50D  	| 148.796.763 	| 30              	|
-| esm2_t33_650M_UR50D  	| 652.356.503 	| 33              	|
-| esm2_t36_3B_UR50D    	|             	|                 	|
-| esm2_t48_15B_UR50D   	|             	|                 	|
+| Model                	| #Params       	| Attention Heads 	|
+|----------------------	|---------------	|-----------------	|
+| protBERT             	| 419.933.186   	| 16              	|
+| prot_t5_xl_uniref50  	| 2.820.144.130 	| 32              	|
+| esm1b_t33_650M_UR50S 	| 652.359.063   	| 33              	|
+| esm2_t6_8M_UR50D     	| 7.840.763     	| 6               	|
+| esm2_t12_35M_UR50D   	| 33.993.843    	| 12              	|
+| esm2_t30_150M_UR50D  	| 148.796.763   	| 30              	|
+| esm2_t33_650M_UR50D  	| 652.356.503   	| 33              	|
+| esm2_t36_3B_UR50D    	| 2,841,632,163 	| 36              	|
+| esm2_t48_15B_UR50D   	|               	|                 	|
 
 ## Benchmark Setup
 - Start a EC2 instance according to the following table.

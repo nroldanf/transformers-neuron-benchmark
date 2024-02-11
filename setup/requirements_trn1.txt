@@ -9,3 +9,5 @@ typer
 bitsandbytes
 torchinfo
 bertviz
+umap-learn
+umap-learn[plot]
